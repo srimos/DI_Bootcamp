@@ -1,0 +1,63 @@
+p, div, ol, ul, td, th {
+    font-size: 15px;
+}
+
+#highlight {
+    background-color:yellow;
+}
+
+h3 {
+    text-decoration:underline;
+    margin-left:50px;
+}
+
+ul > li {
+    margin-left:50px;
+}
+
+#media {
+    text-align:center;
+}
+
+#difference {
+    display:block;
+    text-align:center;
+    color: red;
+    border:1px solid red;
+
+}
+
+#lions {
+    margin-left: 100px;
+    margin-right:100px
+}
+
+td, th {
+    border:1px solid black;
+}
+
+td {
+    padding-top: 10px;
+    padding-bottom:10px;
+}
+
+#cat {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 200px;
+    object-fit: cover;
+object-position: 25% 25%; 
+    border: 5px solid orange;
+}
+
+#lion {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border: 5px solid orange;
+}
