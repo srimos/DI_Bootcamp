@@ -1,0 +1,49 @@
+/* p {
+    color: purple;
+}
+
+div { 
+    margin: 100px;
+    padding: 100px;
+    border: 10px solid green;
+    background-color: rgb(0, 255, 0);
+}
+
+/*Exercise-2*/
+#flag > div {
+    width: 20px;
+    height: 100px;
+    display: inline-block;
+}
+
+#blue {
+    background-color:blue;
+}
+
+#red {
+    background-color:red;
+
+}
+
+
+/*Exercise 3*/
+#div1li2 {
+    color: blue;
+}
+
+#div1 li {
+text-transform: uppercase;
+text-decoration: bold;
+}
+
+#div2 > #p1 {
+    background-color: pink;
+    color: white;
+    display: inline;
+}
+
+#div2 > #p2 {
+    background-color: lightblue;
+    margin: 100px;
+    padding: 100px;
+}
