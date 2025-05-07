@@ -1,0 +1,51 @@
+#row1 > div {
+    display:inline-block;
+}
+
+.pic {
+    display:inline;
+    width:200px;
+}
+
+.originalprice {
+    text-decoration:line-through;
+    font-size: 12px;
+}
+
+.discountedprice {
+    color:green;
+    font-style: bold;
+}
+
+.productname {
+    position:relative;
+    text-align:center;
+}
+
+.price {
+    position:relative;
+    text-align:center;
+}
+
+.new {
+    color:white;
+    position: relative;
+    top: 70px;
+    left: 10px;
+    width: 20px;
+background-color:green;
+    border: 20px solid green;
+    border-radius:50% 50%
+}
+
+.discount {
+    display:inline;
+    color:white;
+    position: relative;
+    top: 70px;
+    left: 80px;
+    width: 20px;
+background-color:red;
+    border: 20px solid red;
+    border-radius:50% 50%
+}
