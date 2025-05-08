@@ -1,9 +1,26 @@
+.row {
+    display:block;
+    width:100%;
+    position:relative;
+    top:100px;
+}
+
+.product {
+    display:inline-block;
+    width:200px;
+}
+
 #row1 > div {
     display:inline-block;
 }
 
 .pic {
-    display:inline;
+    display:inline-block;
+    width:200px;
+}
+
+.info {
+    display:inline-block;
     width:200px;
 }
 
@@ -29,23 +46,81 @@
 
 .new {
     color:white;
-    position: relative;
-    top: 70px;
-    left: 10px;
+    position:relative;
+    top: -300px;
+    left: 0px;
     width: 20px;
-background-color:green;
-    border: 20px solid green;
-    border-radius:50% 50%
+    background-color:green;
+    border: 15px solid green;
+    border-radius:50% 50%;
 }
 
 .discount {
-    display:inline;
     color:white;
-    position: relative;
-    top: 70px;
-    left: 80px;
+    position:relative;
+    top: -350px;
+    left: 150px;
     width: 20px;
 background-color:red;
-    border: 20px solid red;
+    border: 15px solid red;
     border-radius:50% 50%
 }
+
+#hidden {
+    visibility:hidden;
+}
+
+#nav {
+    display:block;
+    background-color: black;
+    padding:10px;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%
+}
+
+#index {
+    position: absolute;
+    right:20px;
+       float:right;
+        color:white;
+    }
+
+    li {
+        display:inline-block;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .row {
+            width: 300px;
+        }
+    }
+    
+    @media only screen and (min-width: 600px) {
+        .row {
+            width: 300px;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .row {
+            width: 500px;
+        }
+    }
+
+    @media only screen and (min-width: 992px) {
+        .row {
+            width: 100%;
+        }
+    }

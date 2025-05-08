@@ -19,6 +19,20 @@ right:20px;
     color:white;
 }
 
+#index {
+    position: absolute;
+    right:200px;
+       float:right;
+        color:white;
+}
+
+#login {
+    position: absolute;
+    right:120px;
+       float:right;
+        color:white;
+}
+
 #signup {
     position: absolute;
     right:120px;
@@ -26,11 +40,15 @@ right:20px;
         color:white;
 }
 
-#login {
-    position: absolute;
-    right:200px;
-       float:right;
-        color:white;
+li{
+    display:inline-block;
+
+}
+
+#form {
+    display:block;
+    position:relative;
+    top:100px;
 }
 
 .footer {
@@ -41,8 +59,4 @@ right:20px;
     background-color: black;
     color: white;
     text-align: center;
-}
-
-li {
-    display:inline-block;
 }
