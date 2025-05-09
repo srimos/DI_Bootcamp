@@ -124,3 +124,19 @@ background-color:red;
             width: 100%;
         }
     }
+
+    .pic:hover {
+        border:1px solid red;
+      }
+
+      .popup {
+        position:absolute;
+        top:100px;
+        left:50px;
+background-color:aqua;
+display:none;
+      }
+
+      .pic:hover > .popup {
+display:block;
+      }
