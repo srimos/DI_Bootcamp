@@ -7,7 +7,7 @@
 
 .product {
     display:inline-block;
-    width:200px;
+    width:auto;
 }
 
 #row1 > div {
@@ -15,8 +15,12 @@
 }
 
 .pic {
-    display:inline-block;
-    width:200px;
+    display:block;
+    width:100px;
+}
+
+.pic > img {
+width:200px;
 }
 
 .info {
