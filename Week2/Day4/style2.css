@@ -1,0 +1,12 @@
+nav{
+    display:block;
+    margin: 100px;
+    margin-top:10px;
+
+}
+
+.backgroundpic {
+    background-image:url("pic.jpeg");
+    margin:600px;
+    position:absolute;
+}

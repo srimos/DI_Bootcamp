@@ -1,0 +1,59 @@
+.btn-outline-light {
+    background-color:transparent;
+    border:1px solid grey;
+    color:black;
+}
+
+.inlineblocks {
+    display:inline-block;
+}
+
+.form-inline {
+   margin-right:0px;
+}
+
+#about {
+    border:1px solid black;
+    background-color:black;
+    color:white;
+}
+
+.badge {
+    border-radius:10px;
+    background-color: grey;
+}
+
+nav {
+    position:fixed;
+
+}
+
+.container {
+    display:flex;
+    justify-content: space-around;
+}
+
+.container > item {
+    display:space-around;
+}
+
+.item {
+    display:inline-block;
+}
+
+.new {
+    background-color:aqua;
+    border-radius: 1px;
+    padding:5px;
+    display:inline-block;
+    font-size:20px;
+}
+
+#signin {
+    background-color: green;
+    color:white;
+}
+
+li { 
+   width:200 px;
+}
