@@ -3,3 +3,8 @@
 html,h1,h2,h3,h4,h5,h6,a{
     font-family: "Raleway";
 }
+
+body {
+  background-image: url("https://gh.cdn.sewest.net/assets/ident/news/final-fantasy-vii-remake-zoom-backgrounds/en_US/ffviir-zoom-midgar-city.jpg?quality=65");
+  background-color: black;
+}
