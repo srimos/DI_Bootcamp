@@ -13,3 +13,5 @@ basket.remove("Kiwi")
 basket.remove("Oranges")
 basket.remove("Apples")
 print(basket)
+
+print("Finished!")

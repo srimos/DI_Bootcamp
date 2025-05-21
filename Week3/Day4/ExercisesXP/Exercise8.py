@@ -13,4 +13,6 @@ while active:
 
 print(pizza)
 cost=10+len(topping)*2.5
-print("Total cost of pizza: $",cost)         
+print("Total cost of pizza: $",cost)        
+
+print("Finished!")

@@ -9,3 +9,5 @@ friend_fav_numbers={6,7,8,9,50}
 print(friend_fav_numbers)
 our_fav_numbers =set(list(my_fav_numbers) + list(friend_fav_numbers))
 print(our_fav_numbers)
+
+print("Finished!")
