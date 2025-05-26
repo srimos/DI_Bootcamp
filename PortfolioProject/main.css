@@ -10,7 +10,7 @@ body {
   background-attachment: fixed;
   background-size:cover;
   background-position:center;
-  background-color: black;
+  background-color: grey;
 }
 
 #overlay {
@@ -43,6 +43,34 @@ div {
 }
 
 .profilepicture {
-  height:200px;
-  object-position:center;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%
+}
+
+.container {
+  display:flex;
+  flex-direction:row;
+  align-items:flex-start;
+  justify-content:space-between;
+}  
+
+.project {
+  width:30%;
+}
+
+.heading {
+  display:flex;
+  justify-content:space-around;
+}
+
+p {
+  display:flex;
+  justify-content:space-around;
+}
+
+bth {
+  display:flex;
+  justify-content:space-around;
 }
