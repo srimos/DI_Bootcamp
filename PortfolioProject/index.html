@@ -11,44 +11,43 @@
 
     <!-- The navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
         <div class="container-fluid">
+
             <a class="navbar-brand" href="#">
                 <img src="sword.png" alt="sword" width="30">
                 CodeWarrior
             </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">About Me</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown link
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">About Me</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Journey</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Projects</a>
+                    </li>
+                
+                </ul>
+            </div>
         </div>
     </nav>
 
+    <div class="space"></div>
     <!-- The header -->
-    <!-- <header>
-        <div id="overlay"></div>
-    </header> -->
+    <header>
+       <div id="overlay"></div> 
+    </header>
 
     <!-- About page -->
     <section>
@@ -59,7 +58,7 @@
         <h1 class="sectiontitle">About Me</h1>
         </p>
         
-        <div class="sectiontext">This is about me.</div>
+        <div class="sectiontext">Hi! My name is Shaun and I just started coding!</div>
 
     </section>
 
@@ -70,109 +69,107 @@
     <section>
 
         <p>
-        <h1 class="sectiontitle">My journey</h1>
+        <h1 class="sectiontitle">My Journey</h1>
         </p>    
 
         <!-- Left section -->
-        <div class="journey">
-        <div class="journey-left-column">
-            <ul>
-            <!-- List1 -->
-                <li>
-                    <div class="journey-years year1">2006 - 2016</div>
-                    <p></p>
-                </li>
-            <!-- List1 -->
-                <li>
-                    <div class="journey-years year2">2016 - 2025</div>
-                    <p></p>
-                </li>
-            <!-- List1 -->
-                <li>
-                    <div class="journey-years year3">2025 - Current</div>
-                    <p></p>
-                </li>
-            </ul>
-        </div>
+        <div class="journey-container">
+            <div class="journey-left-column">
+                <div class="journey-years year1">
+                    <h3>2006 - 2016</h3>
+                </div>
+                <div class="journey-years year2">
+                    <h3>2016 - 2025</h3>
+                </div>
+                <div class="journey-years year3">
+                    <h3>2025 - Current</h3>
+                </div>
+            </div>
 
         <!-- Right section -->
-        <div class="journey-right-column">
-            <ul>
-            <!-- List1 -->
-                <li>
+            <div class="journey-right-column">
+                <div class="journey journey1">
                     <h3>Academic Years</h3>
-                        <ul>
-                            <li>
-                                <div>Bachelor and PhD in Chemical Engineering</div>
-                            </li>
-                            <li>
-                                <div>Monash University, Melbourne, Australia</div>
-                            </li>
-                        </ul>
+                    <ul>
+                        <li>
+                            <div>Bachelor and PhD in Chemical Engineering</div>
+                        </li>
+                        <li>
+                            <div>Monash University, Melbourne, Australia</div>
+                        </li>
+                    </ul>
                     <h4>Programmes used</h4>
                     <div>Matlab, HYSYS</div>
-                </li>
-            <!-- List1 -->
-                <li>
+                </div>
+                    
+                <div class="journey journey2">
                     <h3>Professional Years</h3>
-                        <ul>
-                            <li>
-                                <div>Sustainability & Innovation Coordinator</div>
-                            </li>
-                            <li>
-                                <div>Archemics Ltd</div>
-                            </li>
-                        </ul>
+                    <ul>
+                        <li>
+                            <div>Sustainability & Innovation Coordinator</div>
+                        </li>
+                        <li>
+                            <div>Archemics Ltd</div>
+                        </li>
+                    </ul>
                     <h4>Programmes used</h4>
                     <div>Excel, Pivot Tables, Visual Basic, Sicorax</div>    
-                </li>
-            <!-- List1 -->
-                <li>
+                </div>
+         
+                <div class="journey journey3">
                     <h3>Bootcamp!</h3>
-                        <ul>
-                            <li>
-                                <div>Aspiring Coder</div>
-                            </li>
-                            <li>
-                                <div>Develoipers.Institute</div>
-                            </li>
-                        </ul>
+                    <ul>
+                        <li>
+                            <div>Aspiring Coder</div>
+                        </li>
+                        <li>
+                            <div>Develoipers.Institute</div>
+                        </li>
+                    </ul>
                     <h4>Programmes used</h4>
                     <div>HTML, CSS, Python, Django, Django Rest, Javascript, Node.js, React</div>    
-                </li>
-            </ul>
-        </div>
+                </div>
+            </div>
         </div>
     </section>
     
-     <!-- Projects page -->
-    <div class="container">
-        <div class="project">
-            <h3 class="heading">Project1</h3>
-            <p>This is a text</p>
-            <p>
-                <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-chart-simple"></i>View details</button>
-            </p>
+    <!-- Projects page -->
+    <!-- Show 3 columns, becomes 1 column when screen is small. -->
+    <section>
+        <p>
+        <h1 class="sectiontitle">My Projects</h1>
+        </p>    
+    
+        <div class="portfolio-container">
+
+            <div class="project project1">
+                <img class="projectpic projectpic1" src="projectpic1.jpg">
+                <div class="projecttext projecttext1">Project1</div>
+                <div>This is my first project.</div>
+                <button type="button" class="btn btn-primary">Click Here!</button>
+                <br>     
+            </div>
+
+            <div class="project project2">
+                <img class="projectpic projectpic1" src="projectpic2.jpg">
+                <div class="projecttext projecttext2">Project2</div>
+                <div>This is my second project.</div>
+                <button type="button" class="btn btn-primary">Click Here!</button>
+                <br> 
+            </div>
+
+            <div class="project project3">
+                <img class="projectpic projectpic1" src="projectpic3.webp">
+                <div class="projecttext projecttext3">Project3</div>
+                <div>This is my third project.</div>
+                <button type="button" class="btn btn-primary">Click Here!</button> 
+                <br>
+            </div>
+
         </div>
 
-        <div class="project">
-            <h3 class="heading">Project2</h3>
-            <p>This is a text</p>
-            <p>
-                <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-mobile-screen-button"></i>View details</button>
-            </p>
-        </div>
+    </section>
 
-        <div class="project">
-            <h3 class="heading">Project3</h3>
-            <p>This is a text</p>
-            <p>
-                <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-location-dot"></i>View details</button>
-            </p>
-        </div>
-    </div>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 </html>
