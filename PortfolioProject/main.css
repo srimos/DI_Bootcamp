@@ -89,9 +89,8 @@ p {
 .journey-years {
 display:block;
 font-size:30px;
-height:200px;
+height:250px;
 /* border:1px solid red; */
-align-items:right;
 }
 
 .year1 {
@@ -112,9 +111,8 @@ align-items:right;
 
 .journey {
 display:block;
-height:200px;
+height:250px;
 /* border:1px solid red; */
-align-items:right;
 }
 
 .journey1 {
@@ -167,7 +165,7 @@ align-items:right;
 
 @media only screen and (max-width: 600px) {
   .project {  
-    height:500px;
+    height:600px;
     width:100%;
     display:flex;
     flex-direction:column;
