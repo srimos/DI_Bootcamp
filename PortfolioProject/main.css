@@ -76,6 +76,7 @@ p {
   display:grid;
   grid-template-columns:1fr 4fr;
   grid-template-rows:auto auto auto;
+  min-width:700px;
   padding:10px;
 }
 
@@ -107,6 +108,7 @@ height:250px;
 
 .journey-right-column {
   grid-column:2;
+  min: width 400px;
 }
 
 .journey {
