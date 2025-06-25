@@ -44,3 +44,4 @@ select city.city, country.country from city left join country on city.country_id
 
 -- 15. Bonus You want to be able to see how your sellers have been doing? Write a query to get the customer’s id, names (first and last), the amount and the date of payment ordered by the id of the staff member who sold them the dvd.
 select customer.customer_id, customer.first_name, customer.last_name, payment.payment_date, payment.staff_id, sum(payment.amount) from customer inner join payment on customer.customer_id=payment.customer_id group by customer.customer_id, customer.first_name, customer.last_name, payment.amount, payment.payment_date, payment.staff_id having payment.staff_id=1 order by first_name asc;
+
