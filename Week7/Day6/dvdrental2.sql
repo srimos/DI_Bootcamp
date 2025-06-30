@@ -84,5 +84,20 @@ inner join category on film_category.category_id = category.category_id
 where category.name ilike '%documentary%' and length < 60 and rating = 'R';
 
 -- The 3rd film : A film that his friend Matthew Mahan rented. He paid over $4.00 for the rental, and he returned it between the 28th of July and the 1st of August, 2005.
+select film.title, customer.first_name, customer.last_name, film.rental_rate, return_date
+from film
+inner join inventory on film.film_id = inventory.film_id
+inner join rental on inventory.inventory_id = rental.inventory_id
+inner join customer on rental.customer_id = customer.customer_id
+where first_name = 'Matthew' and last_name = 'Mahan' and rental_rate > 4.00 and return_date between '2005-07-28' and '2005-08-01';
 
 -- The 4th film : His friend Matthew Mahan watched this film, as well. It had the word “boat” in the title or description, and it looked like it was a very expensive DVD to replace.
+select film.title, customer.first_name, customer.last_name, film.description, film.replacement_cost
+from film
+inner join inventory on film.film_id = inventory.film_id
+inner join rental on inventory.inventory_id = rental.inventory_id
+inner join customer on rental.customer_id = customer.customer_id
+where (first_name = 'Matthew' and last_name = 'Mahan' and title ilike '%boat%') 
+or (first_name = 'Matthew' and last_name = 'Mahan' and description ilike '%boat%') 
+order by film.replacement_cost desc
+limit 1;
