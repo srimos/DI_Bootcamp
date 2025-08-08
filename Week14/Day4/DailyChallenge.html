@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//     Instructions
+// Create a variable called sentence. The value of the variable should be a string that contains the words “not” and “bad”.
+// For example, “The movie is not that bad, I like it”.
+
+    // let sentence = "This dinner is not that bad ! You cook well"
+    // let sentence = "This movie is not so bad!"
+    // let sentence = "This dinner is bad!";
+    let sentence = "This dinner is good!";
+
+// Create a variable called wordNot where it’s value is the first appearance (ie. the position) of the substring “not” (from the sentence variable).
+    let wordNot = sentence.indexOf("not")
+
+// Create a variable called wordBad where it’s value is the first appearance (ie. the position) of the substring “bad” (from the sentence variable).
+    let wordBad = sentence.indexOf("bad")
+    
+// If the word “bad” comes after the word “not”, you should replace the whole “not…bad” substring with “good”, then console.log the result.
+// For example, the result here should be : “The movie is good, I like it”
+// If the word “bad” does not come after “not” or the words are not in the sentence, console.log the original sentence.
+    if (wordBad>wordNot && wordNot != -1 && wordBad != -1) {
+        let goodSentence = sentence.replace(sentence.substring(wordNot,wordBad+3),"good")
+        console.log(goodSentence)
+    } else if (wordBad<=wordNot || wordNot == -1 || wordBad == -1) {
+        console.log(sentence)
+    }
+</script>
+</html>
