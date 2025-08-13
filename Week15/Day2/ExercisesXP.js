@@ -149,22 +149,19 @@ function myBill(){
     fruit=0;    
     price=0;
     bill=0;
-        for (item in shoppingList) {
-            fruit=shoppingList[item];
-            console.log(stock.fruit)
-            console.log(price.fruit)
-            if (stock.fruit == 0) {
-                console.log("No more fruit in stock");
+        for (let item of shoppingList) {
+            if (stock[item] == 0) {
+                console.log("No more fruit " + item + " in stock");
                 continue;
             } else {
-                price=prices.fruit;
-                console.log(price)
-                console.log("The fruit is in stock and the price is " + price);
-                stock.fruit=stock.fruit - 1;
-                bill = bill + price
+                price=prices[item];
+                console.log("The fruit " + item + " is in stock and the price is " + price);
+                stock[item]=stock[item] - 1;
+                bill = bill + price;
             }
         }
-    console.log(bill)    
+    console.log(bill);
+    console.log(stock);    
 }
 
 myBill()
@@ -172,37 +169,43 @@ myBill()
 // Exercise 5 : What’s in my wallet ?
 // Instructions
 // Note: Read the illustration (point 4), while reading the instructions
-
 // Create a function named changeEnough(itemPrice, amountOfChange) that receives two arguments :
 // an item price
 // and an array representing the amount of change in your pocket.
-
 // In the function, determine whether or not you can afford the item.
 // If the sum of the change is bigger or equal than the item’s price (ie. it means that you can afford the item), the function should return true
 // If the sum of the change is smaller than the item’s price (ie. it means that you cannot afford the item) the function should return false
-
 // Change will always be represented in the following order: quarters, dimes, nickels, pennies.
 // A quarters is 0.25
 // A dimes is 0.10
 // A nickel is 0.05
 // A penny is 0.01
-
-
 // 4. To illustrate:
-
 // After you created the function, invoke it like this:
-
 // changeEnough(4.25, [25, 20, 5, 0])
 // The value 4.25 represents the item’s price
 // The array [25, 20, 5, 0] represents 25 quarters, 20 dimes, 5 nickels and 0 pennies.
 // The function should return true, since having 25 quarters, 20 dimes, 5 nickels and 0 pennies gives you 6.25 + 2 + .25 + 0 = 8.50 which is bigger than 4.25 (the total amount due)
-
-
 // Examples
-
 // changeEnough(14.11, [2,100,0,0]) => returns false
 // changeEnough(0.75, [0,0,20,5]) => returns true
+function changeEnough(itemPrice, amountOfChange) {
+    // calculate the sum of the change
+    valueChange=[0.25,0.10,0.05,0.01];
+    sum=0
+    for (let change in amountOfChange){
+        sum += amountOfChange[change]*valueChange[change];
+    }
+    if (sum >= itemPrice) {
+        console.log("True");
+    } else {
+        console.log("False");
+    }
+}
 
+changeEnough(4.25, [25, 20, 5, 0]);
+changeEnough(14.11, [2,100,0,0]);
+changeEnough(0.75, [0,0,20,5]);
 
 // 🌟 Exercise 6 : Vacations Costs
 // Instructions
