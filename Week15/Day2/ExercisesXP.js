@@ -210,11 +210,21 @@ changeEnough(0.75, [0,0,20,5]);
 // 🌟 Exercise 6 : Vacations Costs
 // Instructions
 // Let’s create functions that calculate your vacation’s costs:
-
 // Define a function called hotelCost().
 // It should ask the user for the number of nights they would like to stay in the hotel.
 // If the user doesn’t answer or if the answer is not a number, ask again.
 // The hotel costs $140 per night. The function should return the total price of the hotel.
+function hotelCost() {
+    do {
+    input1 = prompt("How many nights would you like to stay in the hotel?")
+    hotelNights = parseInt(input1);
+    } while (Number.isNaN(hotelNights));
+    hotelPrice=hotelNights*140;
+    console.log(hotelPrice);
+    return hotelPrice;    
+}
+
+hotelCost()
 
 // Define a function called planeRideCost().
 // It should ask the user for their destination.
@@ -223,6 +233,24 @@ changeEnough(0.75, [0,0,20,5]);
 // “London”: 183$
 // “Paris” : 220$
 // All other destination : 300$
+function planeRideCost() {
+    do {
+    input2 = prompt("What is your destination? London? Paris? Or somewhere else?")
+    planeDestination = parseInt(input2);
+    } while (!Number.isNaN(planeDestination)||input2==="");
+    planeCost=0
+    if (input2==="London") {
+        planeCost=183
+    } else if (input2==="Paris") {
+        planeCost=220
+    } else {
+        planeCost=300
+    }
+    console.log(planeCost);
+    return planeCost
+}
+
+planeRideCost()
 
 // Define a function called rentalCarCost().
 // It should ask the user for the number of days they would like to rent the car.
@@ -230,11 +258,36 @@ changeEnough(0.75, [0,0,20,5]);
 // Calculate the cost to rent the car. The car costs $40 everyday.
 // If the user rents a car for more than 10 days, they get a 5% discount.
 // The function should return the total price of the car rental.
+function rentalCarCost() {
+    do {
+    input3 = prompt("How many days would you like to rent the car?")
+    carDays = parseInt(input3);
+    } while (Number.isNaN(carDays));
+    carCost=carDays*40;
+    if (carDays>10) {
+        carCost=carCost*95/100
+    } else {
+        carCost=carCost
+    }
+    console.log(carCost);
+    return carCost;  
+}
+
+rentalCarCost() 
 
 // Define a function called totalVacationCost() that returns the total cost of the user’s vacation by calling the 3 functions that you created above.
 // Example : The car cost: $x, the hotel cost: $y, the plane tickets cost: $z.
 // Hint: You have to call the functions hotelCost(), planeRideCost() and rentalCarCost() inside the function totalVacationCost().
-
 // Call the function totalVacationCost()
+function totalVacationCost() {
+    hotelCost()
+    planeRideCost()
+    rentalCarCost()
+    console.log("The car cost: $" + hotelPrice + ", the hotel cost: $" + planeCost + ", the plane tickets cost: $" + carCost)
+    total = hotelPrice + planeCost + carCost
+    console.log("The total is: " + total)
+}
+
+totalVacationCost()
 
 // Bonus: Instead of using a prompt inside the 3 first functions, only use a prompt inside the totalVacationCost() function. You need to change the 3 first functions, accordingly.
