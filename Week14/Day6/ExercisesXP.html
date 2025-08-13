@@ -122,11 +122,73 @@ const building = {
 // Review about objects
 // Copy and paste the above object to your Javascript file.
 // Console.log the number of floors in the building.
-console.log(building.numberOfFloors)
+console.log("The building has " + building.numberOfFloors + " floors");
 // Console.log how many apartments are on the floors 1 and 3.
-console.log(building.numberOfAptByFloor.firstFloor,building.numberOfAptByFloor.thirdFloor)
+console.log("Floor 1 has " + building.numberOfAptByFloor.firstFloor + " apartments. Floor 3 has " + building.numberOfAptByFloor.thirdFloor + " apartments.");
 // Console.log the name of the second tenant and the number of rooms he has in his apartment.
-
+console.log("The name of the 2nd tenant is " + building.nameOfTenants[1] + " and his apartment has " + building.numberOfRoomsAndRent[building.nameOfTenants[1].toLowerCase()][0] + " rooms");
 // Check if the sum of Sarah’s and David’s rent is bigger than Dan’s rent. If it is, than increase Dan’s rent to 1200.    
+let sarahDavidRent = building.numberOfRoomsAndRent.sarah[1] + building.numberOfRoomsAndRent.david[1];
+let danRent = building.numberOfRoomsAndRent.dan[1];
+if (sarahDavidRent > danRent) {
+    console.log("Sarah's and David's rent is bigger than Dan's rent");
+    building.numberOfRoomsAndRent.dan[1] = 1200;
+    console.log(building.numberOfRoomsAndRent);
+} else {
+    console.log("Sarah's and David's rent is less than Dan's rent");
+    building.numberOfRoomsAndRent.dan[1] = danRent;
+    console.log(building.numberOfRoomsAndRent);
+}
+
+// 🌟 Exercise 5 : Family
+// Instructions
+// Create an object called family with a few key value pairs.
+// Using a for in loop, console.log the keys of the object.
+// Using a for in loop, console.log the values of the object.
+let family = {
+    name: "Shaun",
+    age: 39,
+    likes: "movies",
+    dislikes: "tiktok",
+}
+
+for (item in family) {
+    console.log(item);
+}
+
+for (item in family) {
+    console.log(family[item]);
+}
+
+// Exercise 6 : Rudolf
+// Instructions
+const details = {
+  my: 'name',
+  is: 'Rudolf',
+  the: 'reindeer'
+}
+// Given the object above and using a for loop, console.log “my name is Rudolf the reindeer”
+string=""
+for (item in details) {
+    if (string=="") {
+        string=item+" "+details[item]
+    } else {
+    string=string+" "+item+" "+details[item]
+    }
+}
+console.log(string)
+
+// Exercise 7 : Secret Group
+// Instructions
+const names = ["Jack", "Philip", "Sarah", "Amanda", "Bernard", "Kyle"];
+// A group of friends have decided to start a secret society. The society’s name will be the first letter of each of their names sorted in alphabetical order.
+// Hint: a string is an array of letters
+// Console.log the name of their secret society. The output should be “ABJKPS”
+SS=[]
+for (name of names) {
+    SS.push(name.substring(0,1))
+}
+SS.sort()
+console.log(`${SS[0]}${SS[1]}${SS[2]}${SS[3]}${SS[4]}${SS[5]}`)
 </script>
 </html>
