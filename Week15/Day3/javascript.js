@@ -1,6 +1,5 @@
 function compareNumbers(userNumber,computerNumber) {
     for (i=2;i>0;i--) {
-        console.log(userNumber,computerNumber)
         if (userNumber===computerNumber) {
             alert("WINNER!");
             break;
@@ -34,7 +33,6 @@ function compareNumbers(userNumber,computerNumber) {
             } while (Number.isNaN(userNumber)||userNumber<0||userNumber>10);
         }
     }
-    console.log(i)
     if (i===0) {
         alert("Out of chances! Too bad!");
     } else {
@@ -44,7 +42,7 @@ function compareNumbers(userNumber,computerNumber) {
 
 function playTheGame() {
     if (confirm("Do you want to play the game?")) {
-        console.log("Okay,let's play!");
+        alert("Okay,let's play!");
         do {
             input = prompt("Enter a number between 0 to 10.");
             userNumber = parseInt(input);
@@ -60,6 +58,6 @@ function playTheGame() {
         computerNumber=parseInt(Math.random()*11);
         compareNumbers(userNumber,computerNumber);
     } else {
-        console.log("No problem, goodbye!");
+        alert("No problem, goodbye!");
     }
 }
