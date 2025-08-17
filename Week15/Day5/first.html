@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <p id="name"><b>Peter</b></p>
+            <p id="age">25</p>
+            <p id="location" class="location">New York</p>
+            <p id="occupation">Software Engineer</p>
+            <p id="salary">30000</p>
+        </div>
+    </body>
+    <script>
+        let name = document.getElementById("name");
+        console.log(name.innerHTML); //Method 1: gives everything between the opening and closing tags
+        console.log(name.textContent);
+
+        name.style="color: red";
+
+        let loc=document.querySelector(".location");
+        console.log(loc.textContent); //New York
+
+        let age=document.querySelector("#age").textContent;
+        console.log(age);
+
+        //update a DOM object
+        let salary = document.getElementById("salary"); //select element
+        salary.textContent=(parseInt(age)*2000).toString(); //update the text contet
+
+        document.querySelector("#occupation").innerHTML="Data Analyst";
+    </script>
+</html>

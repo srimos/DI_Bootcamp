@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <input type="text" id="search" placeholder="Search..." onkeyup="search()">
+        </div>
+        <div>
+            <ul id="results"></ul>
+        </div>
+    </body>
+    <script>
+        products=["apple","banana","orange","grape","pineapple","mango","kiwi"];
+
+        function search() {
+            let keyword=document.getElementById("search").value.toLowerCase();
+
+            search_results=[];
+
+            for (product of products) {
+                if (product.toLowerCase().includes(keyword)) {
+                    search_results.push(product);
+                }
+                console.log(product);
+            }
+            displayResults(search_results);
+        }
+
+        function displayResults(search_results) {
+            ul = document.getElementById("results");
+
+            ul.innerHTML=""
+            for (result of search_results){
+                new_element=document.createElement("li");
+                new_element.textConent=result;
+
+                ul.appendChild(new_element);
+            }
+        }
+    </script>
+</html>
