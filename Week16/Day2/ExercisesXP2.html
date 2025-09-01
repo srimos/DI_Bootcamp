@@ -38,22 +38,38 @@
 // then append them to a the <ul class="usersAnswer"></ul>, below the form.
     form.addEventListener("submit", getUserComments)
  
+    function clearFnameErrors(){
+        fname.setCustomValidity("")
+    } 
+
+    function clearLnameErrors(){
+        lname.setCustomValidity("")
+    }
+
+    fname.addEventListener("input", clearFnameErrors)
+    lname.addEventListener("input", clearLnameErrors)
+
     function getUserComments(e) {
         e.preventDefault()
         let ul = document.getElementsByClassName("usersAnswer")[0]
-        fname.setCustomValidity("");
-        lname.setCustomValidity("");
+        
         if (!fname.value) {
             fname.setCustomValidity("Field is empty!");
-        } 
+        } else {
+            fname.setCustomValidity("");
+        }
+
         if (!lname.value) {
             lname.setCustomValidity("Field is empty!");
+        } else {
+            lname.setCustomValidity("");
         }
-        if (!fname.value || !lname.value) {
-            fname.reportValidity();
-            lname.reportValidity();
-            return;
+
+        if (!form.reportValidity()) {
+            return; 
         }
+        
+        ul.innerHTML = "";
         let li1 = document.createElement("li");
         let f = document.createTextNode(fname.value);
         li1.appendChild(f);
