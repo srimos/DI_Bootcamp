@@ -1,38 +1,29 @@
-// 1
-allBoldItems=[]
+let form = document.getElementById("MyForm");
+let radius = document.getElementById("radius");
+let volume = document.getElementById("volume");
 
-function getBoldItems() {
-    let boldItems=document.getElementsByTagName("strong")
-    for (let i=0;i<boldItems.length;i++) {
-        allBoldItems.push(boldItems[i])
+form.addEventListener("submit", getUserComments)
+ 
+function clearErrors(){
+    radius.setCustomValidity("")
+} 
+
+radius.addEventListener("input", clearErrors)
+
+function getUserComments(e) {
+    e.preventDefault()
+    let radiususer=parseInt(radius.value)
+    if (!Number.isInteger(radiususer)) {
+        radius.setCustomValidity("Only numbers please.");
     }
-    return allBoldItems
-}
 
-getBoldItems()
-
-// 2
-function highlight() {
-    for (let item of allBoldItems) {
-        item.style.color="blue"
+    if (!form.reportValidity()) {
+        return; 
     }
-    console.log("All bold text changed to blue!")
-}
-highlight()
 
-// 3
-function returnItemsToDefault(){
-    for (let item of allBoldItems) {
-        item.style.color=""
-    }
-    console.log("All bold text changed back to default!")
-}
-returnItemsToDefault()
+    let cubed=radiususer**3
+    let volumeanswer=4/3*Math.PI*cubed
+    let volume2d=parseFloat(volumeanswer.toFixed(2))
+    volume.value=volume2d
 
-// 4
-let paragraph=document.getElementsByTagName("p")
-
-for (let p of paragraph){
-p.addEventListener("mouseover",highlight)
-p.addEventListener("mouseout",returnItemsToDefault)
 }
