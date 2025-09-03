@@ -1,0 +1,47 @@
+#board {
+    background: grey;
+    width: 100%;
+    border: 1px solid black;
+    height: 500px;
+    display: flex;
+    padding: 10px;
+    gap:10px;
+    padding-right:10px;
+}
+
+#board_left {
+    flex: 0 0 20%;
+    background: lightblue;
+}
+
+#board_right {
+    flex: 0 0 80%;
+    background: pink;
+}
+
+#clear_button {
+    width: 100%;
+    background: white;
+    color: black;
+    padding:10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#drawing_grid {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);   
+  gap: 1px; 
+  height: 100%; 
+}
+
+#drawing_grid div {
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px; 
+}
