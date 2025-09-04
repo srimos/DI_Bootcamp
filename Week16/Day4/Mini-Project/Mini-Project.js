@@ -1,4 +1,4 @@
-const colour_chart = ["red","orange","yellow","green","blue","purple","aqua","black","lightgreen","brown","lightcoral","lightcyan","lightyellow","lightpink","pink","magenta","lime","orangered","plum","silver","deeppink"];
+const colour_chart = ["red","orange","yellow","green","blue","purple","aqua3","black","lightgreen","brown","lightcoral","lightcyan","lightyellow","lightpink","pink","magenta","lime","orangered","plum","silver","deeppink"];
 
 let selectedColour = ""
 let isMouseDown = false;
