@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Book, BookReview 
 from django.http import JsonResponse
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def list_books(request):
@@ -28,3 +30,33 @@ def book_detail(request,id):
     }    
 
     return JsonResponse(data)
+
+@csrf_exempt
+def create_book(request):
+    if request.method == "POST":
+        data = json.loads(request.body.decode("utf-8"))
+
+        book = Book.objects.create(
+            title=data.get("title",""),
+            author=data.get("author",""),
+            published_date=data.get("published_date",None), 
+            description=data.get("description",""),
+            page_count=data.get("page_count",0),
+            categories=data.get("categories",""),
+            thumbnail_url=data.get("thumbnail_url","")
+        )
+
+        response_data = {
+            "id": book.id,
+            "title": book.title,
+            "author": book.author,
+            "published_date": book.published_date,
+            "description": book.description,
+            "page_count": book.page_count,
+            "categories": book.categories,
+            "thumbnail_url": book.thumbnail_url
+        }
+
+        return JsonResponse(response_data)
+
+    return JsonResponse({})
