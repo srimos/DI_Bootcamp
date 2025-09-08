@@ -1,0 +1,50 @@
+# Create Book
+# This endpoint allows you to create a new book entry in the system. You need to provide details about the book in the request body.
+# Request
+# Method: POST
+# URL: http://localhost:3000/books/create/
+# Content-Type: application/json
+
+# Request Body Parameters
+# The request body should be a JSON object containing the following parameters:
+# title (string): The title of the book.
+# author (string): The author of the book.
+# published_date (string): The date the book was published, formatted as YYYY-MM-DD.
+# description (string): A brief description of the book.
+# page_count (integer): The total number of pages in the book.
+# categories (string): Categories associated with the book (optional).
+# thumbnail_url (string): URL of the book's thumbnail image (optional).
+
+# Response
+# Upon a successful request, you will receive a response with the following structure:
+# Status: 200 OK
+# Content-Type: application/json
+
+# The response body will be a JSON object containing:
+# id (integer): The unique identifier for the newly created book.
+# title (string): The title of the book.
+# author (string): The author of the book.
+# published_date (string): The published date of the book.
+# description (string): The description of the book.
+# page_count (integer): The total number of pages in the book.
+# categories (string): Categories associated with the book.
+# thumbnail_url (string): URL of the book's thumbnail image.
+
+# Notes
+# Ensure that all required fields are provided in the request body to successfully create a book.
+# Optional fields can be left empty if not applicable.
+
+# Body
+# raw (json)
+# {
+#   "title": "Clean Code",
+#   "author": "Robert C. Martin",
+#   "published_date": "2008-08-11",
+#   "description": "This is a sample book added through Postman",
+#   "page_count": 464,
+#   "categories": "",
+#   "thumbnail_url":""
+# }
+
+
+

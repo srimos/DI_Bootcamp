@@ -61,4 +61,4 @@ def populate_books(query="django"):
             print(f"Already exists: {title}")
 
 if __name__ == "__main__":
-    populate_books("python")
+    populate_books("game")
