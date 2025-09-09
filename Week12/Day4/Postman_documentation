@@ -5,11 +5,12 @@
 
 # Expected Response
 # Status Code: 200 OK
-# Response Body: The response will contain an array of student objects, each containing the following fields:
-# id: Unique identifier for the student.
-# name: The name of the student.
-# age: The age of the student.
-# grade: The grade level of the student.
+# Response Body: The response will be in JSON format contain an array of student objects, each containing the following fields:
+# id (string): Unique identifier for the student.
+# first_name (string): The first name of the student.
+# last_name (string): The last name of the student.
+# email (string): The email address of the student.
+# date_joined (string): The date the student joined.
 
 # Notes
 # Ensure that the server is running and accessible at the specified URL.
