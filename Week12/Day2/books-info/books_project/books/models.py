@@ -10,7 +10,6 @@ class Book(models.Model):
     page_count = models.IntegerField(
         validators=[MinValueValidator(0)]
     )
-    categories = models.CharField(max_length=100, blank=False)
     thumbnail_url = models.URLField()
 
     def __str__(self):

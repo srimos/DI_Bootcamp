@@ -1,0 +1,119 @@
+# 1. Get Students
+# This endpoint retrieves a list of students from the server.
+# Request Parameters
+# None: This is a simple GET request and does not require any parameters.
+
+# Expected Response
+# Status Code: 200 OK
+# Response Body: The response will contain an array of student objects, each containing the following fields:
+# id: Unique identifier for the student.
+# name: The name of the student.
+# age: The age of the student.
+# grade: The grade level of the student.
+
+# Notes
+# Ensure that the server is running and accessible at the specified URL.
+# This endpoint is useful for fetching all student records for display or further processing.
+
+# 2. Add Student
+# This endpoint allows you to add a new student to the system. By sending a POST request to /students/, you can create a new student record with the specified details.
+# Request
+# Method: POST
+# URL: http://localhost:3000/students/
+# Request Headers
+# Content-Type: application/json
+
+# Request Body
+# The request body sould contain the following fields:
+# first_name (string): The first name of the student.
+# last_name (string): The last name of the student.
+# email (string): The email address of the student.
+# date_joined (string): The date the student joined (format may vary based on implementation).
+
+# Example:
+
+# {
+#   "first_name": "Shaun",
+#   "last_name": "Rimos",
+#   "email": "shaun@example.com",
+#   "date_joined": ""
+# }
+
+# Response
+# Upon successful creation of a student, the server will respond with a JSON object containing the details of the newly created student record. The structure of the response may include:
+# id (string): Unique identifier for the student.
+# first_name (string): The first name of the student.
+# last_name (string): The last name of the student.
+# email (string): The email address of the student.
+# date_joined (string): The date the student joined.
+
+# Example Response
+# JSON
+
+# {
+#   "id": "1",
+#   "first_name": "Shaun",
+#   "last_name": "Rimos",
+#   "email": "shaun@example.com",
+#   "date_joined": "2025-09-09 03:58:15.8851022"
+# }
+
+# Notes
+# Ensure that all required fields are provided in the request body to avoid validation errors.
+# The date_joined field may be optional depending on the implementation.
+
+# 3. Get Student Details
+# This endpoint retrieves detailed information about a specific student identified by their unique ID.
+# Request
+# Method: GET
+# URL: http://localhost:3000/students/{id}/
+# Path Parameter:
+# id (integer): The unique identifier of the student whose details you want to fetch.
+
+# Response
+# Upon a successful request, the API will return a JSON object containing the student's details. The response will typically include the following fields:
+# id: The unique identifier of the student.
+# name: The name of the student.
+# age: The age of the student.
+# grade: The current grade of the student.
+# enrollmentDate: The date the student was enrolled.
+
+# Notes
+# Ensure that the student ID provided in the request path exists in the database; otherwise, you may receive a 404 Not Found response.
+# This endpoint is useful for retrieving student information for administrative purposes or for displaying in user interfaces.
+
+# 4. Update Student Information
+# This endpoint allows you to update the information of a specific student identified by their unique ID.
+# Request
+# Method: PUT
+# URL: http://localhost:3000/students/{id}/
+# Content-Type: application/json
+
+# Request Body Parameters
+# The request body must include the following parameters:
+# first_name (string): The first name of the student.
+# last_name (string): The last name of the student.
+# email (string): The email address of the student.
+# date_joined (string): The date the student joined (can be left empty).
+
+# Expected Response
+# Upon a successful update, the server will respond with a confirmation message indicating that the student's information has been updated. The response will typically include the updated student details.
+
+# Notes
+# Ensure that the student ID in the URL corresponds to an existing student in the database.
+# All fields in the request body are required for a successful update.
+# If any required fields are missing or invalid, the server will return an error response detailing the issues.
+
+# 5. Delete Student
+# This endpoint is used to delete a specific student record from the database. 
+# HTTP Method: DELETE
+# Endpoint: /students/{id}/
+# Request Parameters
+# id (path parameter): The unique identifier of the student to be deleted. 
+
+# Expected Response
+# Upon a successful deletion, the server will respond with a status code indicating the outcome of the operation. Typically, a 204 No Content status code is returned to signify that the request was successful and there is no additional content to send in the response.
+
+# Notes
+# Ensure that the student ID provided in the request exists in the database; otherwise, an error response may be returned.
+# This operation is irreversible; once a student record is deleted, it cannot be recovered.
