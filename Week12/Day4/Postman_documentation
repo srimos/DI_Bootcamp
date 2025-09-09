@@ -73,11 +73,11 @@
 
 # Response
 # Upon a successful request, the API will return a JSON object containing the student's details. The response will typically include the following fields:
-# id: The unique identifier of the student.
-# name: The name of the student.
-# age: The age of the student.
-# grade: The current grade of the student.
-# enrollmentDate: The date the student was enrolled.
+# id (string): Unique identifier for the student.
+# first_name (string): The first name of the student.
+# last_name (string): The last name of the student.
+# email (string): The email address of the student.
+# date_joined (string): The date the student joined.
 
 # Notes
 # Ensure that the student ID provided in the request path exists in the database; otherwise, you may receive a 404 Not Found response.
