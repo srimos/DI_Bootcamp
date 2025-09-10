@@ -34,7 +34,7 @@ kilo(1);
 // The function should display in the DOM a sentence like "You will be a <job title> in <geographic location>, and married to <partner's name> with <number of children> kids."
 (function (numberOfChildren,partnerName,location,jobTitle) {
     document.getElementsByTagName("p")[0].innerHTML=(`You will be a ${jobTitle} in ${location}, and married to ${partnerName} with ${numberOfChildren} kids.`)
-})(2,"Stella","Mauritius","software engineer")
+})(2,"Stella","Mauritius","software engineer");
 
 // 🌟 Exercise 4 : Welcome
 // Instructions
@@ -43,3 +43,38 @@ kilo(1);
 // Create a Bootstrap Navbar in your HTML file.
 // In your js file, create a self invoking function that takes 1 argument: the name of the user that just signed in.
 // The function should add a div in the navbar, displaying the name of the user and his profile picture.
+(function (name) {
+    nav=document.getElementsByTagName("nav")[0];
+    nav.style.display = "flex"
+    nav.style.justifyContent = "space-between"
+    nav.style.alignItems = "center"
+
+    profileDiv=document.createElement("div");
+    profileDiv.style.display = "flex";
+    profileDiv.style.alignItems = "center"; 
+    profileDiv.style.gap = "10px";
+
+    profilePic=document.createElement("img")
+    profilePic.src="make-you-a-minimalist-profile-picture.png";
+    profilePic.alt = "Placeholder image";
+    profilePic.style.width = "100px";
+    profileDiv.append(profilePic);
+
+    textDiv=document.createElement("div");
+
+    profileGreeting=document.createElement("p");
+    profileGreeting.innerHTML="Welcome!";
+    profileGreeting.style.margin = "0"
+    profileGreeting.style.color = "white"
+    textDiv.append(profileGreeting);
+
+    profileName=document.createElement("p");
+    profileName.innerHTML=`${name}`;
+    profileName.style.margin = "0"
+    profileName.style.color = "white"
+    textDiv.append(profileName);
+
+    profileDiv.append(textDiv);
+    textDiv.style.margin="10px"
+    nav.append(profileDiv);
+})("John")
