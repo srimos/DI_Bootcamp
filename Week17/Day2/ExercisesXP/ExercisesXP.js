@@ -91,23 +91,23 @@ kilo(1);
 // The outer function named makeJuice receives 1 argument: the size of the beverage the client wants - small, medium or large.
 // The inner function named addIngredients receives 3 ingredients, and displays on the DOM a sentence like The client wants a <size drink> juice, containing <first ingredient>, <second ingredient>, <third ingredient>".
 // Invoke the inner function ONCE inside the outer function. Then invoke the outer function in the global scope.
-// function makeJuice (beverageSize) {
-//     function addIngredients (firstIngredient,secondIngredient,thirdIngredient) {
-//         let body = document.getElementsByTagName("body")[0];
-//         let juice = document.createElement("p");
-//         juice.setAttribute("id","juice");
-//         body.appendChild(juice)
-//         document.getElementById("juice").innerHTML=(`The client wants a ${beverageSize} juice, containing ${firstIngredient}, ${secondIngredient}, ${thirdIngredient}.`);
-//     } 
-//     return addIngredients
-// }
-// makeJuice("small")("strawberries","blueberries","raspberries");
+function makeJuice1 (beverageSize) {
+    function addIngredients (firstIngredient,secondIngredient,thirdIngredient) {
+        let body = document.getElementsByTagName("body")[0];
+        let juice1 = document.createElement("p");
+        juice1.setAttribute("id","juice1");
+        body.appendChild(juice1)
+        document.getElementById("juice1").innerHTML=(`The client wants a ${beverageSize} juice, containing ${firstIngredient}, ${secondIngredient}, ${thirdIngredient}.`);
+    } 
+    return addIngredients
+}
+makeJuice1("small")("strawberries","blueberries","raspberries");
 // Part II:
 // In the makeJuice function, create an empty array named ingredients.
 // The addIngredients function should now receive 3 ingredients, and push them into the ingredients array.
 // Create a new inner function named displayJuice that displays on the DOM a sentence like The client wants a <size drink> juice, containing <first ingredient>, <second ingredient>, <third ingredient>".
 // The client wants 6 ingredients in his juice, therefore, invoke the addIngredients function TWICE. Then invoke once the displayJuice function. Finally, invoke the makeJuice function in the global scope.
-function makeJuice (beverageSize) {
+function makeJuice2 (beverageSize) {
     ingredients=[]
 
     function addIngredients (firstIngredient,secondIngredient,thirdIngredient) {
@@ -116,17 +116,19 @@ function makeJuice (beverageSize) {
         
     function displayJuice () {
         let body = document.getElementsByTagName("body")[0];
-        let juice = document.getElementById("juice")
-        if (!juice) {
-            juice = document.createElement("p")
-            juice.setAttribute("id","juice");
-            body.appendChild(juice)
+        let juice2 = document.getElementById("juice2")
+        if (!juice2) {
+            juice2 = document.createElement("p")
+            juice2.setAttribute("id","juice2");
+            body.appendChild(juice2)
         }
-        juice.innerHTML = `The client wants a ${beverageSize} juice, containing ${ingredients.join(", ")}.`
+        juice2.innerHTML = `The client wants a ${beverageSize} juice, containing ${ingredients.join(", ")}.`
     }
     
-    addIngredients("strawberries","blueberries","raspberries")
-    addIngredients("mulberries","blackberries","cranberries")
+    return function(ingredient1,ingredient2,ingredient3,ingredient4,ingredient5,ingredient6){
+    addIngredients(ingredient1,ingredient2,ingredient3)
+    addIngredients(ingredient4,ingredient5,ingredient6)
     displayJuice()
+    }
 }
-makeJuice("large")
+makeJuice2("large")("strawberries","blueberries","raspberries","mulberries","blackberries","cranberries")
