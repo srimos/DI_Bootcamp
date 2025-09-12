@@ -40,3 +40,26 @@ console.log(fullStackResidents)
 // 3. Bonus : Chain the filter method with a map method, to return an array containing only the lastName of the Full Stack Residents.
 const fullStackResidentsLastName = users.filter((user)=>user.role=='Full Stack Resident').map((user)=>user.lastName)
 console.log(fullStackResidentsLastName)
+
+// 🌟 Exercise 3 : Star Wars
+// Instructions
+// Using this array 
+const epic = ['a', 'long', 'time', 'ago', 'in a', 'galaxy', 'far far', 'away'];
+// Use the reduce() method to combine all of these into a single string.
+let array = epic.reduce((acc,val)=>acc+" "+val)
+console.log(array)
+
+// 🌟 Exercise 4 : Employees #2
+// Instructions
+// Using this object:
+const students = [{name: "Ray", course: "Computer Science", isPassed: true}, 
+               {name: "Liam", course: "Computer Science", isPassed: false}, 
+               {name: "Jenner", course: "Information Technology", isPassed: true}, 
+               {name: "Marco", course: "Robotics", isPassed: true}, 
+               {name: "Kimberly", course: "Artificial Intelligence", isPassed: false}, 
+               {name: "Jamie", course: "Big Data", isPassed: false}];
+// Using the filter() method, create a new array, containing the students that passed the course.
+// Bonus : Chain the filter method with a forEach method, to congratulate the students with their name and course name (ie. “Good job Jenner, you passed the course in Information Technology”, “Good Job Marco you passed the course in Robotics” etc…)
+const studentsPass = students.filter((student)=>student.isPassed==true)
+console.log(studentsPass)
+const studentsCongrats = students.filter(student=>student.isPassed==true).forEach(student=>console.log(`Good job ${student.name}, you passed the course in ${student.course}`))
