@@ -81,7 +81,7 @@ function generate_robot_objects(i){
         img.setAttribute('class','img')
         img.setAttribute('id',`img${i+1}`)
         newRobot.appendChild(img)
-        let p1 = document.createElement("h2")
+        let p1 = document.createElement("h3")
         p1.innerHTML = robots[i].name
         newRobot.appendChild(p1)
         let p3 = document.createElement("div")
@@ -94,11 +94,28 @@ function generate_robot_objects(i){
 window.onload = function (event){
     let body = document.getElementsByTagName("body")[0]
 
+    let navbar = document.createElement("div")
+    navbar.setAttribute('class','navbar')
+    navbar.setAttribute('id','navbar')
+    body.append(navbar)
+    
+    let logo = document.createElement("div")
+    logo.setAttribute('class','logo')
+    logo.setAttribute('id','logo')
+    logo.innerHTML = "ROBOFRIENDS"
+    navbar.append(logo)
+
+    let navbackground = document.createElement("div")
+    navbackground.setAttribute('class','navbackground')
+    navbackground.setAttribute('id','navbackground')
+    navbar.append(navbackground)
+
     let myFilter = document.createElement("input")
     myFilter.setAttribute('name','myFilter')
     myFilter.setAttribute('class','myFilter')
     myFilter.setAttribute('id','myFilter')
-    body.appendChild(myFilter)
+    myFilter.setAttribute('placeholder','Search Robots')
+    navbackground.appendChild(myFilter)
 
     let robot_container = document.createElement("div")
     robot_container.setAttribute('class','robot_container')
