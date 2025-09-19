@@ -1,0 +1,20 @@
+CREATE
+POST /api/articles/body=articlecontent | /url <body>
+201: created
+
+READ
+GET /api/articles/ | /url
+200 OK: resource exists, here's the data
+404 Not Found: resource not found
+504: website not responsive
+401: refuse access because you are not logged in
+302: redirecting he user to anohter page
+403: he user is logged in but still has no privilege to access the resource
+
+UPDATE 
+PATCH/PUT /api/articles/<id>/body=newarticlecontent | /url <body>
+
+DELETE /api/articles/<id>
+
+4XX errors are on client side
+5XX errors are on server side
