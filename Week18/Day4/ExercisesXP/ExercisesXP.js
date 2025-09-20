@@ -45,8 +45,12 @@ const marioGame = {
       }
   },
 }
+console.log(marioGame)
 // Convert this JS object into a JSON object. What happens to the nested objects ?
 let marioGamejson = JSON.stringify(marioGame)
 console.log(marioGamejson)
+// Nested objects are converted into string.
 // Convert and pretty print this JS object into a JSON object. Hint : Check out the JSON lesson on the platform.
+let marioGamejsonpp = JSON.stringify(marioGame,null,2)
+console.log(marioGamejsonpp)
 // Use your web inspector to add a breakpoint. Check the values of the JSON object in the debugger.
