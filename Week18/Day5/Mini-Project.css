@@ -1,0 +1,81 @@
+#X {
+    height:50px;
+    width:50px;
+    display:inline-block;
+    color:white;
+    background-color: blue;
+    border-radius: 50%;
+    font-size:40px;
+    text-align:center;
+}
+
+#X:hover {
+    cursor: pointer;
+}
+
+#O {
+    height:50px;
+    width:50px;
+    display:inline-block;
+    color:white;
+    background-color: blue;
+    border-radius: 50%;
+    font-size:40px;
+    text-align:center;
+}
+
+#O:hover {
+    cursor: pointer;
+}
+
+td {
+    width:200px;
+    height:200px;
+    border:5px solid black;
+    color:black;
+    font-size:50px;
+}
+
+td:hover {
+    cursor:pointer;
+}
+
+table {
+    border-collapse:collapse;
+}
+
+#r1c1 {
+    border-left: none;
+    border-top: none;
+}
+
+#r1c2 {
+    border-top: none;
+}
+
+#r1c3 {
+    border-top: none;
+    border-right: none;
+}
+
+#r2c1 {
+    border-left: none;
+}
+
+#r2c3 {
+    border-right: none;
+}
+
+#r3c1 {
+    border-left: none;
+    border-bottom: none;
+}
+
+#r3c2 {
+    border-bottom: none;
+}
+
+#r3c3 {
+    border-bottom: none;
+    border-right: none;
+}

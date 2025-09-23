@@ -72,7 +72,6 @@ const robots = [
           ];
 
 function generate_robot_objects(i){
-        console.log(i)
         let newRobot = document.createElement("div")
         newRobot.setAttribute('class','robot')
         newRobot.setAttribute('id',`robot${i+1}`)
@@ -87,7 +86,6 @@ function generate_robot_objects(i){
         let p3 = document.createElement("div")
         p3.innerHTML = robots[i].email
         newRobot.appendChild(p3)
-        console.log(img)
         return newRobot
 }
 

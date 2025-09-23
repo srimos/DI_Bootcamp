@@ -9,8 +9,8 @@ form.addEventListener("submit",function(event){
         name: name,
         last_name: last_name
     }
-    const jsonString = JSON.stringify(jsonObj)
+    const jsonString = JSON.stringify(jsonObj,null,2)
 
-    const p=document.getElementsByTagName("p")[0]
-    p.innerHTML = jsonString
+    const pre=document.getElementsByTagName("pre")[0]
+    pre.innerHTML = jsonString
 })
