@@ -54,3 +54,6 @@ console.log(marioGamejson)
 let marioGamejsonpp = JSON.stringify(marioGame,null,2)
 console.log(marioGamejsonpp)
 // Use your web inspector to add a breakpoint. Check the values of the JSON object in the debugger.
+
+// const urlParams = new URLSearchParams(window.location.search)
+// const name = urlParams.get('name')
