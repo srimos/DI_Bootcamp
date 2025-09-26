@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+async function myFunction(){
+    let goodGrades = 93;
+
+    let endSemester = new Promise((resolve, reject) => {
+        setTimeout(function(){
+            if (goodGrades > 90) {
+                resolve("Computer");
+            } else if (goodGrades => 80 && goodGrades <= 89) {
+                resolve("Phone");
+            } else {
+                reject("I won't get the gift");
+            }
+        },5000)
+    })
+    let gift = await endSemester;
+    console.log(gift)
+    console.log("ended")
+}
+myFunction()
+console.log("end of my script")
+</script>
+</html>

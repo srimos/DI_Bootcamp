@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to Artworks display</h1>
+    <div id="artworks">
+        <ul id="artwork_list">
+            Loading...
+        </ul>
+    </div>
+    
+</body>
+<script>
+    let artworks;
+    let myPromise = fetch("https://api.artic.edu/api/v1/artworks") //returns a promise
+    myPromise.then(function(data){ //we are getting the data and formatting it into json object
+        // document.getElementById("artworks").innerHTML = "<h2>We will display the artworks here</h2>"
+        return data.json()
+    }).then(function(data){ //here we will display the data
+        console.log(data.data)
+        let artworks=data.data
+        let li_string=""
+        let img;
+        for (let i = 0;i<artworks.length;i++){
+            let singleArtwork = artworks[i]
+            if (singleArtwork.thumbnail){
+                img = "<img width='200px' src='" + singleArtwork.thumbnail.lqip + "''>"
+            } else {
+                img=""
+            }
+            li_string+="<li>" + singleArtwork.title + img + "</li>"
+        }
+        document.getElementById("artwork_list").innerHTML=li_string
+    })
+    myPromise.catch(function(data){
+        console.log(data)
+        document.getElementById("artworks").innerHTML = "<h2 style='background-color:red'>The link is not working</h2>"
+    })
+</script>
+</html>
+
+<!--https://api.artic.edu/docs/#iiif-image-api--> 
+<!--https://api.artic.edu/api/v1/artworks/(insert_id_here)?fields=id,title,image_id--> 
+<!--https://www.artic.edu/iiif/2/(insert_image_id_here)/full/843,/0/default.jpg--> 
