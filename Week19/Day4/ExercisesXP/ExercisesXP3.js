@@ -13,7 +13,7 @@ async function starWarsAPI(){
     } catch (err) {
         console.log("There was an error: ",err)
     }  
-    console.log("Work done...")
+    console.log("Work done")
 }
 
 starWarsAPI()

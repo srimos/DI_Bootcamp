@@ -13,6 +13,6 @@ const giphyAPI = () => {
         }).catch((error)=>{
             console.log(error)
         })
-    console.log("Work done...")
+    console.log("Work done")
 }
 giphyAPI()
