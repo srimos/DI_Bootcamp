@@ -1,26 +1,15 @@
 const fs = require('fs').promises;
 
-async function readFile(file) {
+async function readDir(directoryName) {
     try {
-        const data = await fs.readFile(file, "utf-8")
-        return data;
+        const files = await fs.readdir(directoryName)
+        console.log("Current directory filenames:");
+        files.forEach(file => {
+            console.log(file);
+        })
         } catch (err) {
-            console.error('Error reading file: ', err);
+            console.error('Error reading directory: ', err);
         }
 }
 
-async function writeFile(file,content) {
-    try {
-        await fs.writeFile(file,content);
-        console.log("File written successfully");
-        } catch (err) {
-            console.error('Error writing file: ', err);
-        }
-}
-
-async function readWrite (){
-    const content = await readFile("source.txt");
-    if (content){
-        writeFile("destination.txt",content);
-    }
-}
+readDir(__dirname)
