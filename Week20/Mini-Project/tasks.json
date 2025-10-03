@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "task_name": "shower the hamster",
+    "date_time_started": "2025-10-04 00:28:33",
+    "completed": true,
+    "date_time_finished": "2025-10-04 00:28:59"
+  },
+  {
+    "id": 3,
+    "task_name": "feed the cat",
+    "date_time_started": "2025-10-04 00:28:50",
+    "completed": false
+  },
+  {
+    "id": 4,
+    "task_name": "play with the duck",
+    "date_time_started": "2025-10-04 00:29:32",
+    "completed": false
+  }
+]
