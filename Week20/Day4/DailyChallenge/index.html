@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Guessing Game</title>
+</head>
+<body>
+    <h1>Emoji Guessing Game</h1>
+    <h2>What emoji is this? Choose an answer and press Submit!</h2>
+    <p id="emoji"></p>
+    <form id="form">
+        <input type="hidden" value="" id="emojivalue" name="emoji">
+        <input type="radio" value="" name="answer" id="radio1"><span id="answer1"></span><br>
+        <input type="radio" value="" name="answer" id="radio2"><span id="answer2"></span><br>
+        <input type="radio" value="" name="answer" id="radio3"><span id="answer3"></span><br>
+        <button id="submit" type="submit">Submit answer</button>
+    </form>
+    <p>
+        <h2>Score</h2>
+        <div id="result"></div>
+        <div id="total"></div>
+    </p>
+</body>
+<script>
+    let score=0
+    total = document.getElementById("total")
+    total.innerHTML = score
+
+    async function loadQuestion(){
+        const response = await fetch ("/api/question")
+        const question = await response.json()
+        console.log(question)
+        let emoji = document.getElementById("emoji")
+        emoji.innerHTML = question.emoji
+        let emojivalue = document.getElementById("emojivalue")
+        emojivalue.value = question.emoji
+        let answer1 = document.getElementById("answer1")
+        radio1.value = question.options[0]
+        answer1.innerHTML = question.options[0]
+        let answer2 = document.getElementById("answer2")
+        radio2.value = question.options[1]
+        answer2.innerHTML = question.options[1]
+        let answer3 = document.getElementById("answer3")
+        radio3.value = question.options[2]
+        answer3.innerHTML = question.options[2]
+    }
+    loadQuestion()
+
+    let form = document.getElementById("form")
+    form.addEventListener("submit",async function(event){
+        event.preventDefault();
+        const selected = document.querySelector('input[name="answer"]:checked');
+        const userAnswer = selected.value;
+        console.log(userAnswer)
+        const currentEmoji = emojivalue.value;
+        console.log(currentEmoji)
+        const res = await fetch("/api/checkAnswer", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ currentEmoji, userAnswer })
+        });
+        const result = await res.json();
+        document.getElementById("result").textContent = result.correct ? "✅ Correct!" : "❌ Wrong answer.";
+        if (result.correct) {
+            score+=1
+            total.innerHTML = score
+        }
+        loadQuestion()
+    })
+
+</script>
+</html>
