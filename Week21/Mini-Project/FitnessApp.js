@@ -8,6 +8,8 @@ import usersRoutes from './routes/usersRoutes.js'
 import workoutsRoutes from './routes/workoutsRoutes.js'
 import userWorkoutsRoutes from './routes/userWorkoutsRoutes.js'
 
+import {errorHandler} from "./middleware/errorHandler.js"
+
 async function testConnection() {
     try {
     await db.raw('SELECT 1+1 AS result');
@@ -30,6 +32,8 @@ app.use('/userWorkouts', userWorkoutsRoutes)
 app.get("/",(req,res)=>{
     res.json("Welcome to the Fitness App")
 })
+
+app.use(errorHandler)
 
 app.listen (5002,()=>{
     console.log("The server is running on port 5002")

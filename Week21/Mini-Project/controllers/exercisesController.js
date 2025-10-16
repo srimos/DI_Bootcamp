@@ -1,18 +1,19 @@
 import exercisesModel from "../models/exercisesModel.js";
    
 const exercisesController ={
-    getAll: async (req,res) => {
+    getAll: async (req,res,next) => {
         try {
             const exercises = await exercisesModel.getAll()
             res.status(200).json(exercises);
             console.log("Data received")
         } catch (err) {
-            console.error("Error fetching exercises:", err.message);
-            res.status(500).json({ error: "Failed to fetch exercises" });
+            // console.error("Error fetching exercises:", err.message);
+            // res.status(500).json({ error: "Failed to fetch exercises" });
+            next(err)
         }
     },
 
-    getById: async (req,res) => {
+    getById: async (req,res,next) => {
         try {
             const id = parseInt(req.params.id)
             if (!id || isNaN(id)) {
@@ -25,23 +26,25 @@ const exercisesController ={
             res.status(200).json(exercise);
             console.log("Data received")
         } catch (err) {
-            console.error("Error fetching exercise:", err.message);
-            res.status(500).json({ error: "Failed to fetch exercise" });
+            // console.error("Error fetching exercise:", err.message);
+            // res.status(500).json({ error: "Failed to fetch exercise" });
+            next(err)
         }  
     },
 
-    create: async (req,res) => {
+    create: async (req,res,next) => {
         try {
             const newExercise = await exercisesModel.create(req.body)
             res.status(201).json(newExercise);
             console.log("New exercise created")
         } catch (err) {
-            console.error("Error creating exercise:", err.message);
-            res.status(500).json({ error: "Failed to create exercise" });
+            // console.error("Error creating exercise:", err.message);
+            // res.status(500).json({ error: "Failed to create exercise" });
+            next(err)
         } 
     },
 
-    update: async (req,res) => {
+    update: async (req,res,next) => {
         try {
             const id = parseInt(req.params.id)
             if (!id || isNaN(id)) {
@@ -54,12 +57,13 @@ const exercisesController ={
             res.status(200).json(updatedExercise);
             console.log("Exercise updated")
         } catch (err) {
-            console.error("Error updating exercise:", err.message);
-            res.status(500).json({ error: "Failed to update exercise" });
+            // console.error("Error updating exercise:", err.message);
+            // res.status(500).json({ error: "Failed to update exercise" });
+            next(err)
         } 
     },
 
-    delete: async (req,res) => {
+    delete: async (req,res,next) => {
         try {
             const id = parseInt(req.params.id)
             if (!id || isNaN(id)) {
@@ -72,8 +76,9 @@ const exercisesController ={
             res.status(200).json({message:"Exercise deleted"});
             console.log("Exercise deleted")
         } catch (err) {
-            console.error("Error deleting exercise:", err.message);
-            res.status(500).json({ error: "Failed to delete exercise" });
+            // console.error("Error deleting exercise:", err.message);
+            // res.status(500).json({ error: "Failed to delete exercise" });
+            next(err)
         }
     }
 }

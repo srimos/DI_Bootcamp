@@ -1,18 +1,19 @@
 import userWorkoutsModel from "../models/userWorkoutsModel.js";
    
 const userWorkoutsController ={
-    getAll: async (req,res) => {
+    getAll: async (req,res,next) => {
         try {
             const userWorkouts = await userWorkoutsModel.getAll()
             res.status(200).json(userWorkouts);
             console.log("Data received")
         } catch (err) {
-            console.error("Error fetching data:", err.message);
-            res.status(500).json({ error: "Failed to fetch data" });
+            // console.error("Error fetching data:", err.message);
+            // res.status(500).json({ error: "Failed to fetch data" });
+            next(err)
         }
     },
     
-    getUserWorkouts: async (req,res) => {
+    getUserWorkouts: async (req,res,next) => {
         try {
             const userId = parseInt(req.params.userId)
             if (!userId || isNaN(userId)) {
@@ -25,12 +26,13 @@ const userWorkoutsController ={
             res.status(200).json(workouts);
             console.log("Data received")
         } catch (err) {
-            console.error("Error fetching workouts for user:", err.message);
-            res.status(500).json({ error: "Failed to fetch workouts for user" });
+            // console.error("Error fetching workouts for user:", err.message);
+            // res.status(500).json({ error: "Failed to fetch workouts for user" });
+            next(err)
         }  
     },
 
-    assign: async (req,res) => {
+    assign: async (req,res,next) => {
         try {
             const {user_id,workout_id} = req.body
             if (!user_id || !workout_id) {
@@ -40,8 +42,9 @@ const userWorkoutsController ={
             res.status(201).json(assignment);
             console.log("Workout assigned to user")
         } catch (err) {
-            console.error("Error assigning workout to user:", err.message);
-            res.status(500).json({ error: "Failed to assign workout to user" });
+            // console.error("Error assigning workout to user:", err.message);
+            // res.status(500).json({ error: "Failed to assign workout to user" });
+            next(err)
         } 
     },
 }
