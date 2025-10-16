@@ -81,7 +81,7 @@ app.put("/api/books/:bookId",async(req,res)=>{
             return res.status(400).json({ error: "Invalid bookId" });
         }
         const [book] = await db("books")
-        .where({bookId})
+        .where({bookId:bookId})
         .update(req.body)
         .returning(['bookId','title','author','publishedYear'])
         if (!book) {

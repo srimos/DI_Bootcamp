@@ -4,6 +4,9 @@ const app = express()
 import {db} from "./config/knexconnect.js";
 
 import exercisesRoutes from './routes/exercisesRoutes.js'
+import usersRoutes from './routes/usersRoutes.js'
+import workoutsRoutes from './routes/workoutsRoutes.js'
+import userWorkoutsRoutes from './routes/userWorkoutsRoutes.js'
 
 async function testConnection() {
     try {
@@ -20,6 +23,9 @@ await testConnection();
 app.use(express.json())
 
 app.use('/exercises', exercisesRoutes)
+app.use('/users', usersRoutes)
+app.use('/workouts', workoutsRoutes)
+app.use('/userWorkouts', userWorkoutsRoutes)
 
 app.get("/",(req,res)=>{
     res.json("Welcome to the Fitness App")
