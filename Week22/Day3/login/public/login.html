@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta username="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Welcome to Login Class!</h1>
+
+    <form method="POST" id="login-form" action="/login.html">
+        <input type="text" placeholder="username" class="login-username" name="username">
+        <br>
+        <div class="login-remember">
+            <input type="checkbox" class="login-remember" id="login-remember-check">
+            <label class="login-remember" for="login-remember-check">Remember me</label>
+        </div>
+        <br>
+        <input type="password" placeholder="password" class="login-password" name="password">
+        <br>
+        <div class="login-forgot">
+            <a href="">I forgot my password</a>
+        </div> 
+        <br>
+        <button class="login-button" type="submit" id="login-button">LOGIN</a>
+        </button>
+    </form>
+    <pre>
+    </pre>
+</body>
+<script>
+    const form = document.getElementById("login-form")
+
+    form.addEventListener("submit",async function(event){
+        event.preventDefault()
+        const formData = new FormData(form)
+        const username = formData.get("username")
+        const password = formData.get("password")
+        const queryString = new URLSearchParams({
+            username: username,
+            password: password
+        }).toString();
+
+        console.log("Query:", queryString);
+
+        try{
+            const res = await fetch(`/api/login-check?${queryString}`,{
+                method: "POST",
+            });
+
+            if (!res.ok) {
+                const error = await res.text();
+                throw new Error(`Server error: ${error}`);
+            }
+            const data = await res.json();
+            console.log("Login response:", data);
+
+            if (data.status === "logged in") {
+                window.location.href = "courses.html";
+            } else {
+                alert("Invalid username or password");
+}
+
+        } catch (err) {
+            console.error("Error during login:", err);
+            alert("Something went wrong. Please try again.");
+        }
+    })
+</script>
+</html>
+

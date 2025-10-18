@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>You are now logged in!</h1>
+    <h2>Here are your courses</h2>
+    <ul id="course-list"></ul>
+
+</body>
+<script>
+    
+    window.onload = async function() {
+    try {
+        const res = await fetch("/api/courses");
+        
+        if (res.ok) {
+            const courses = await res.json();
+            console.log("Courses:", courses);
+
+            const list = document.getElementById("course-list");
+            courses.forEach(c => {
+                const li = document.createElement("li");
+                li.textContent = c.name;
+                list.appendChild(li);
+            });
+        } else if (res.status === 403) {
+            window.location.href = "login.html";
+        }
+    } catch (err) {
+        console.error("Error fetching courses:", err);
+    }
+};
+    </script>
+</html>

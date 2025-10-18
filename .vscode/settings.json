@@ -2,5 +2,6 @@
     "editor.autoClosingBrackets": "never",
     "html.autoClosingTags": false,
     "javascript.autoClosingTags": false,
-    "typescript.autoClosingTags": false
+    "typescript.autoClosingTags": false,
+    "editor.autoClosingQuotes": "never"
 }

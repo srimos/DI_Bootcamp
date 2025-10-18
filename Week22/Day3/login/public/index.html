@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <button id="courses">Go to courses</button>
+    <button id="login">Go to login page</button>
+</body>
+<script>
+    const courses = document.getElementById("courses")
+    courses.addEventListener("click",async function(event){
+        event.preventDefault()
+        try {
+            window.location.href = "courses.html"
+        } catch (err) {
+            console.error("Error: ", err);
+        }
+    })
+
+    const login = document.getElementById("login")
+    login.addEventListener("click",async function(){
+        try {
+            window.location.href = "login.html"
+        } catch (err) {
+            console.error("Error: ", err);
+        }
+    })
+    </script>
+</html>
