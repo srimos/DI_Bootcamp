@@ -1,6 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import Car from './Component/Car.js'
+import Garage from './Component/Garage.js'
+import Events from './Component/Events.js'
+import Phone from './Component/Phone.js'
+import Color from './Component/Color.js'
 
 const carinfo = {name: "Ford", model: "Mustang"};
 
@@ -23,7 +27,9 @@ function App() {
       </header>
 
     <Car carinfo={carinfo} carid="1"/>
-    <Garage size='small'/>
+    <Events/>
+    <Phone/>
+    <Color/>
 
     </div>
   );
