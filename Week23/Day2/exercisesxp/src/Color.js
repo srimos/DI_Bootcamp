@@ -4,16 +4,32 @@ class Color extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
-            favoriteColor:  "red"
+            favoriteColor: "red",
+            show: true
         }
     }
 
     shouldComponentUpdate = () => {
-        return false
+        return true
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({favoriteColor:"yellow"})
+        }, 5000);
+    }
+
+    componentDidUpdate() {
+        console.log("after update");
     }
 
     changeColor = () => {
         this.setState({favoriteColor:"blue"})
+    }
+
+    getSnapshotBeforeUpdate(prevProps,prevState) {
+        console.log("in getSnapshotBeforeUpdate")
+        return prevState.favoriteColor;
     }
 
     render() {
@@ -26,4 +42,40 @@ class Color extends React.Component {
     }
 }
 
-export default Color
+class Child extends React.Component {
+    componentWillUnmount () {
+        console.log("Child is about to unmount");
+        alert("The Component named Header is about to be unmounted.")
+    }
+    
+    render(){
+        console.log("Child is rendering");
+        return(
+            <h1>Hello World!</h1>
+        )
+    }
+}
+
+class Parent extends React.Component {
+    constructor (props) {
+        super (props)
+        this.state = {
+            show: true
+        }
+    }
+
+    delete = () => {
+        this.setState({show:false})
+    }
+
+    render(){
+        return(
+            <>
+            {this.state.show && <Child />}
+            <button onClick={this.delete}>Delete Header</button>
+            </>
+        )
+    }
+}
+
+export {Color,Parent}

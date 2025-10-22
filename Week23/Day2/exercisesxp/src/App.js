@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import ErrorBoundary from './ErrorBoundary';
-import Color from './Color.js'
+import {Color,Parent} from './Color.js'
 
 class BuggyCounter extends React.Component {
   constructor(props) {
@@ -70,6 +70,7 @@ function App() {
       <BuggyCounter/>
 
       <Color/>
+      <Parent/>
     </> 
   );
 }
