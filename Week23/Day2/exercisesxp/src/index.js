@@ -3,18 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Car from './Car.js';
-import CarFunction from "./CarFunction.js";
-import CarFunction2 from "./CarFunction2.js";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <h1>hello</h1>
-    <Car />
-    <CarFunction colour="blue" speed={0} max_speed={120}/>
-    <CarFunction2/>
-    <App/>
+    <App />
   </React.StrictMode>
 );
 
