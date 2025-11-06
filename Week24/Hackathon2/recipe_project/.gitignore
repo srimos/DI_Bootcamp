@@ -1,0 +1,39 @@
+# ==========================================
+# PYTHON / DJANGO
+# ==========================================
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+*.log
+media/
+staticfiles/
+.env
+*.env
+
+# Django migration backups
+*/migrations/__pycache__/
+*/migrations/*.py[cod]
+
+# ==========================================
+# NODE / REACT
+# ==========================================
+frontend/node_modules/
+frontend/build/
+frontend/.env
+
+# npm / yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================================
+# OS FILES
+# ==========================================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
