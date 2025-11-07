@@ -1,10 +1,10 @@
-import SearchRecipes from "./components/SearchRecipes";
+import RecipeSearch from "./components/RecipeSearch";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <h1>Smart Recipe Finder 🥗</h1>
-      <SearchRecipes />
+      <RecipeSearch />
     </div>
   );
 }
