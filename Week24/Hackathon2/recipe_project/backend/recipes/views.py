@@ -3,12 +3,14 @@ from .models import Recipe, Favorite
 from .serializers import RecipeSerializer, RecipeDetailSerializer, FavoriteSerializer
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
-from rest_framework.decorators import action, api_view
+from rest_framework.decorators import action, api_view, permission_classes
 from django.db.models import Q
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     @action(detail=False, methods=['get'])
     def search(self, request):
@@ -24,6 +26,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(recipes, many=True)
         return Response(serializer.data)
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 class RecipeSearchView(generics.ListAPIView):
     serializer_class = RecipeSerializer
@@ -67,3 +72,10 @@ class FavoriteViewSet(viewsets.ModelViewSet):
         except Favorite.DoesNotExist:
             Favorite.objects.create(user=user, recipe_id=recipe_id)
             return Response({"message": "Added to favorites"}, status=status.HTTP_201_CREATED)
+        
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def my_recipes(request):
+    recipes = Recipe.objects.filter(author=request.user)
+    serializer = RecipeSerializer(recipes, many=True)
+    return Response(serializer.data)

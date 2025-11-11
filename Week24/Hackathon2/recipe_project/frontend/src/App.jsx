@@ -8,6 +8,8 @@ import Favorites from "./components/Favorites";
 import MyRecipes from "./components/MyRecipes";
 import PrivateRoute from "./components/PrivateRoute";
 import Navbar from "./components/Navbar";
+import CreateRecipe from "./components/CreateRecipe";
+import EditRecipe from "./components/EditRecipe";
 
 function App() {
   return (
@@ -28,6 +30,16 @@ function App() {
             <PrivateRoute>
               <Favorites />
             </PrivateRoute>
+          }/>
+          <Route path="/create-recipe" element={
+            <PrivateRoute>
+              <CreateRecipe />
+            </PrivateRoute>
+          }/>
+          <Route path="/recipes/:id/edit" element={
+              <PrivateRoute>
+                <EditRecipe />
+              </PrivateRoute>
           }/>
         </Routes>
       </Router>
