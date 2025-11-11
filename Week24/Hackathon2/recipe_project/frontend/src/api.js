@@ -4,6 +4,17 @@ const api = axios.create({
   baseURL: "http://127.0.0.1:8001/api/",
 });
 
+api.interceptors.request.use((config) => {
+  const authTokens = localStorage.getItem("authTokens")
+    ? JSON.parse(localStorage.getItem("authTokens"))
+    : null;
+
+  if (authTokens) {
+    config.headers.Authorization = `Bearer ${authTokens.access}`;
+  }
+  return config;
+});
+
 export default api;
 
 // const API_URL = "http://127.0.0.1:8000/api/";

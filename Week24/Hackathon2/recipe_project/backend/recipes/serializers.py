@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Recipe, Ingredient
+from .models import Recipe, Ingredient, Favorite
 from django.contrib.auth.models import User
 
 class IngredientSerializer(serializers.ModelSerializer):
@@ -35,3 +35,10 @@ class RecipeDetailSerializer(serializers.ModelSerializer):
             'id', 'title', 'description', 'ingredients', 'steps',
             'image', 'author', 'created_at'
         ]
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    recipe = RecipeSerializer(read_only=True)
+
+    class Meta:
+        model = Favorite
+        fields = ['id', 'recipe']

@@ -10,7 +10,6 @@ const RecipeSearch = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch all recipes on initial load
   useEffect(() => {
     fetchRecipes();
   }, []);

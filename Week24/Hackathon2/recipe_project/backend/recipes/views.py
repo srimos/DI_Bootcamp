@@ -1,7 +1,7 @@
 from rest_framework import generics
-from .models import Recipe
-from .serializers import RecipeSerializer, RecipeDetailSerializer
-from rest_framework import viewsets
+from .models import Recipe, Favorite
+from .serializers import RecipeSerializer, RecipeDetailSerializer, FavoriteSerializer
+from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action, api_view
 from django.db.models import Q
@@ -44,3 +44,26 @@ class RecipeSearchView(generics.ListAPIView):
 class RecipeDetailView(generics.RetrieveAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeDetailSerializer
+
+class FavoriteViewSet(viewsets.ModelViewSet):
+    serializer_class = FavoriteSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Favorite.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    @action(detail=False, methods=["post"], url_path="toggle")
+    def toggle_favorite(self, request):
+        recipe_id = request.data.get("recipe_id")
+        user = request.user
+
+        try:
+            favorite = Favorite.objects.get(user=user, recipe_id=recipe_id)
+            favorite.delete()
+            return Response({"message": "Removed from favorites"}, status=status.HTTP_200_OK)
+        except Favorite.DoesNotExist:
+            Favorite.objects.create(user=user, recipe_id=recipe_id)
+            return Response({"message": "Added to favorites"}, status=status.HTTP_201_CREATED)
