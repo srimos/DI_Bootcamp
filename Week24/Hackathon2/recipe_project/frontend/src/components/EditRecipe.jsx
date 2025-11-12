@@ -2,20 +2,19 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../api";
 import { AuthContext } from "../context/AuthContext";
-import "./CreateRecipe.css"; // reuse same CSS
+import "./CreateRecipe.css";
 
 function EditRecipe() {
-  const { id } = useParams();
-  const { authTokens } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const [recipe, setRecipe] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
+  const [notes, setNotes] = useState("");
   const [image, setImage] = useState(null);
+  const { authTokens } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [recipe, setRecipe] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -27,8 +26,9 @@ function EditRecipe() {
         setRecipe(data);
         setTitle(data.title);
         setDescription(data.description);
-        setCategory(data.category || "");
-        setIngredients(data.ingredients_text || "");
+        setIngredients(
+          data.ingredients?.map(i => i.name).join(", ") || ""
+        );
         setSteps(data.steps || "");
       } catch (error) {
         console.error("Error fetching recipe:", error);
@@ -44,23 +44,22 @@ function EditRecipe() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("category", category);
-    formData.append("ingredients_text", ingredients);
+    formData.append("ingredients", ingredients);
     formData.append("steps", steps);
+    formData.append("notes", notes)
     if (image) formData.append("image", image);
 
     try {
-      await api.put(`recipes/${id}/`, formData, {
+      await api.put(`/my-recipes/${id}/`, formData, {
         headers: {
           Authorization: `Bearer ${authTokens.access}`,
           "Content-Type": "multipart/form-data",
         },
       });
-
       alert("Recipe updated successfully!");
       navigate("/my-recipes");
     } catch (error) {
-      console.error("Error updating recipe:", error);
+      console.error("Error updating recipe:", error.response?.data || error);
       alert("Failed to update recipe. Please try again.");
     }
   };
@@ -72,7 +71,7 @@ function EditRecipe() {
       await api.delete(`recipes/${id}/`, {
         headers: { Authorization: `Bearer ${authTokens.access}` },
       });
-      setMyRecipes((prev) => prev.filter((r) => r.id !== id));
+      setRecipe((prev) => prev.filter((r) => r.id !== id));
       alert("Recipe deleted successfully!");
     } catch (error) {
       console.error("Delete failed:", error);
@@ -88,7 +87,12 @@ function EditRecipe() {
 
       <form onSubmit={handleSubmit} className="create-recipe-form">
         <label>Title</label>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} required />
+        <input 
+          type="text"
+          value={title} 
+          onChange={(e) => setTitle(e.target.value)} 
+          required 
+        />
 
         <label>Description</label>
         <textarea
@@ -96,9 +100,6 @@ function EditRecipe() {
           onChange={(e) => setDescription(e.target.value)}
           required
         />
-
-        <label>Category</label>
-        <input value={category} onChange={(e) => setCategory(e.target.value)} />
 
         <label>Ingredients (comma-separated)</label>
         <textarea
@@ -112,6 +113,12 @@ function EditRecipe() {
           value={steps}
           onChange={(e) => setSteps(e.target.value)}
           required
+        />
+
+        <label>Notes</label>
+        <textarea
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
         />
 
         <label>Change Image (optional)</label>

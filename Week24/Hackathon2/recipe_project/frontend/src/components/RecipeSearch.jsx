@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../api";
 import { useState,useEffect } from "react";
 import "./RecipeSearch.css";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +18,8 @@ const RecipeSearch = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get(
-        `http://127.0.0.1:8001/api/recipes/search/?ingredients=${query}`
+      const response = await api.get(
+        `/recipes/search/${query && query.trim() !== "" ? `?ingredients=${encodeURIComponent(query.trim())}` : ""}`
       );
       setRecipes(response.data);
     } catch (err) {
@@ -44,6 +44,7 @@ const RecipeSearch = () => {
           placeholder="e.g. egg, cheese, tomato"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         />
         <button onClick={handleSearch}>Search</button>
       </div>
@@ -62,8 +63,8 @@ const RecipeSearch = () => {
               <p>{recipe.description}</p>
 
               <div className="ingredients">
-                {recipe.ingredients &&
-                  recipe.ingredients.map((ing) => (
+                {recipe.ingredient_objects &&
+                  recipe.ingredient_objects.map((ing) => (
                     <span className="ingredient-tag" key={ing.id}>
                       {ing.name}
                     </span>

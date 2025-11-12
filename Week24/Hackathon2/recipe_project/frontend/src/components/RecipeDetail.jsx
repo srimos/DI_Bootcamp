@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import "./RecipeDetail.css";
 import { AuthContext } from "../context/AuthContext";
 import api from "../api";
@@ -10,6 +10,7 @@ const RecipeDetail = () => {
   const [loading, setLoading] = useState(true);
   const { user, authTokens } = useContext(AuthContext);
   const [isFavorite, setIsFavorite] = useState(false);
+  const navigate = useNavigate();
 
   const handleFavorite = async () => {
     try {
@@ -22,6 +23,21 @@ const RecipeDetail = () => {
     } catch (err) {
       console.error(err);
       alert("Error adding to favorites");
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!window.confirm("Are you sure you want to delete this recipe?")) return;
+
+    try {
+      await api.delete(`/my-recipes/${id}/`, {
+        headers: { Authorization: `Bearer ${authTokens.access}` },
+      });
+      alert("Recipe deleted successfully!");
+      navigate("/my-recipes");
+    } catch (error) {
+      console.error("Delete failed:", error.response?.data || error);
+      alert("Failed to delete recipe.");
     }
   };
 
@@ -64,12 +80,32 @@ const RecipeDetail = () => {
   if (loading) return <p>Loading recipe...</p>;
   if (!recipe) return <p>Recipe not found.</p>;
 
+  const isAuthor = user && recipe.author?.id === user.id;
+
   return (
     <div className="recipe-detail-container">
-      <h2>{recipe.title}</h2>
-      {recipe.image && <img src={recipe.image} alt={recipe.title} />}
-      <p><strong>Author:</strong> {recipe.author.username}</p>
-      <p><strong>Description:</strong> {recipe.description}</p>
+      <div className="recipe-header">
+        <h2>{recipe.title}</h2>
+        {recipe.image && (
+          <img
+            src={recipe.image}
+            alt={recipe.title}
+            className="recipe-image"
+          />
+        )}
+      </div>
+
+      <p className="recipe-author">
+        👨‍🍳 By {recipe.author?.username || "Unknown"} —{" "}
+        <span className="recipe-date">
+          {new Date(recipe.created_at).toLocaleDateString()}
+        </span>
+      </p>
+
+      <section className="recipe-section">
+        <h3>Description</h3>
+        <p>{recipe.description}</p>
+      </section>
 
       {user && (
         <button
@@ -80,27 +116,60 @@ const RecipeDetail = () => {
         </button>
       )}
 
-      <div>
-        <strong>Ingredients:</strong>
-        <ul>
-          {recipe.ingredients.map((ing) => (
-            <li key={ing.id}>{ing.name}</li>
-          ))}
+      <section className="recipe-section">
+        <h3>Ingredients</h3>
+        <ul className="ingredients-list">
+          {recipe.ingredients?.length > 0 ? (
+            recipe.ingredients.map((i) => (
+              <li key={i.id}>{i.name}</li>
+            ))
+          ) : (
+            <li>No ingredients listed.</li>
+          )}
         </ul>
-      </div>
+      </section>
 
-      <div>
-        <strong>Instructions:</strong>
+      <section className="recipe-section">
+        <h3>Instructions</h3>
         <ol>
-          {recipe.steps.split("\n").map((step, index) => (
-            <li key={index}>{step}</li>
-          ))}
+          {(recipe.steps || "")
+            .split("\n")
+            .filter((line) => line.trim() !== "")
+            .map((line, index) => (
+              <li key={index}>{line}</li>
+            ))
+          }
         </ol>
-      </div>
-{/* 
-      {user && <button onClick={handleFavorite}>❤️ Save to Favorites</button>} */}
+      </section>
 
-      <Link to="/">← Back to search</Link>
+      {recipe.notes && (
+        <section className="recipe-section">
+          <h3>Notes</h3>
+          <p>{recipe.notes}</p>
+        </section>
+      )}
+
+{/*   {user && <button onClick={handleFavorite}>❤️ Save to Favorites</button>} */}
+
+      <div className="recipe-actions">
+        <Link
+          to={isAuthor ? "/my-recipes" : "/"}
+          className="back-link"
+        >
+          ← Back to {isAuthor ? "My Recipes" : "Recipes"}
+        </Link>
+
+        {isAuthor && (
+          <div className="author-actions">
+            <Link to={`/edit/${recipe.id}`} className="edit-btn">
+              ✏️ Edit
+            </Link>
+            <button onClick={handleDelete} className="delete-btn">
+              🗑 Delete
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

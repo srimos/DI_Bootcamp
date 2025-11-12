@@ -17,7 +17,10 @@
 }
 
 .my-recipes-container {
-  padding: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
 .recipes-list {
@@ -83,4 +86,14 @@
 
 .btn-delete:hover {
   background-color: #dc2626;
+}
+
+.add-recipe-btn {
+  padding: 6px 12px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
 }

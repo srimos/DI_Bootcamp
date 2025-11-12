@@ -7,9 +7,9 @@ import "./CreateRecipe.css";
 function CreateRecipe() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
+  const [notes, setNotes] = useState("");
   const [image, setImage] = useState(null);
   const { authTokens } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -20,9 +20,9 @@ function CreateRecipe() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("category", category);
     formData.append("ingredients_text", ingredients);
     formData.append("steps", steps);
+    formData.append("notes", notes)
     if (image) formData.append("image", image);
 
     try {
@@ -61,13 +61,6 @@ function CreateRecipe() {
           required
         />
 
-        <label>Category</label>
-        <input
-          type="text"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        />
-
         <label>Ingredients (comma-separated)</label>
         <textarea
           value={ingredients}
@@ -80,8 +73,14 @@ function CreateRecipe() {
         <textarea
           value={steps}
           onChange={(e) => setSteps(e.target.value)}
-          placeholder="Step 1: ..., Step 2: ..."
+          placeholder="Write step one here.\n Then start the next step in a new line.\n And so on..."
           required
+        />
+
+        <label>Notes</label>
+        <textarea
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
         />
 
         <label>Image</label>

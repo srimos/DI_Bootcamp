@@ -42,8 +42,8 @@ function Favorites() {
               <p>{fav.recipe.description}</p>
 
               <div className="ingredients">
-                {fav.recipe.ingredients &&
-                  fav.recipe.ingredients.map((ing) => (
+                {fav.recipe.ingredient_objects &&
+                  fav.recipe.ingredient_objects.map((ing) => (
                     <span className="ingredient-tag" key={ing.id}>
                       {ing.name}
                     </span>

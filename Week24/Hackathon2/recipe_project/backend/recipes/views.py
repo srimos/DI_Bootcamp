@@ -10,7 +10,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     @action(detail=False, methods=['get'])
     def search(self, request):
@@ -22,7 +22,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         recipes = Recipe.objects.all()
 
         for ing in ingredients:
-            recipes = recipes.filter(ingredients__icontains=ing)
+            recipes = recipes.filter(ingredients__name__icontains=ing)
 
         serializer = self.get_serializer(recipes, many=True)
         return Response(serializer.data)
@@ -34,15 +34,23 @@ class RecipeSearchView(generics.ListAPIView):
     serializer_class = RecipeSerializer
 
     def get_queryset(self):
-        query = self.request.query_params.get('ingredients', '')
+        query = self.request.query_params.get('ingredients', '').strip()
         recipes = Recipe.objects.all()
 
-        if query:
-            terms = [term.strip().lower() for term in query.replace(',', ' ').split()]
-            filters = Q()
-            for term in terms:
-                filters |= Q(ingredients__name__icontains=term) | Q(title__icontains=term)
-            recipes = recipes.filter(filters).distinct()
+        if not query:
+            return recipes
+
+        terms = [term.strip().lower() for term in query.replace(',', ' ').split() if term.strip()]
+
+        filters = Q()
+        for term in terms:
+            filters |= (
+                Q(title__icontains=term) |
+                Q(description__icontains=term) |
+                Q(ingredients__name__icontains=term)
+            )
+
+        recipes = recipes.filter(filters).distinct()
 
         return recipes
     
@@ -73,9 +81,12 @@ class FavoriteViewSet(viewsets.ModelViewSet):
             Favorite.objects.create(user=user, recipe_id=recipe_id)
             return Response({"message": "Added to favorites"}, status=status.HTTP_201_CREATED)
         
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def my_recipes(request):
-    recipes = Recipe.objects.filter(author=request.user)
-    serializer = RecipeSerializer(recipes, many=True)
-    return Response(serializer.data)
+class MyRecipeViewSet(viewsets.ModelViewSet):
+    serializer_class = RecipeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Recipe.objects.filter(author=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)

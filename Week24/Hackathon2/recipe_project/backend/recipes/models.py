@@ -13,6 +13,7 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(Ingredient, related_name='recipes')
     steps = models.TextField()
     image = models.ImageField(upload_to='recipes/', blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes')
     created_at = models.DateTimeField(auto_now_add=True)
 
