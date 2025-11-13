@@ -107,29 +107,30 @@
 .delete-btn {
   border: none;
   padding: 8px 14px;
-  border-radius: 6px;
+  border-radius: 4px;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s ease;
   font-size: 14px;
+  text-decoration: none;
 }
 
 .edit-btn {
-  background: #2196F3;
-  color: white;
+  background-color: #facc15;
+  color: #222;
 }
 
 .edit-btn:hover {
-  background: #1976D2;
+  background-color: #eab308;
 }
 
 .delete-btn {
-  background: #f44336;
+  background-color: #ef4444;
   color: white;
 }
 
 .delete-btn:hover {
-  background: #d32f2f;
+  background-color: #dc2626;
 }
 
 @media (max-width: 600px) {

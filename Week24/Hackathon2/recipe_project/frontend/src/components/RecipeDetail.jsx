@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import api from "../api";
 
 const RecipeDetail = () => {
-  const { id } = useParams(); // from route /recipes/:id
+  const { id } = useParams(); 
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user, authTokens } = useContext(AuthContext);
@@ -80,7 +80,7 @@ const RecipeDetail = () => {
   if (loading) return <p>Loading recipe...</p>;
   if (!recipe) return <p>Recipe not found.</p>;
 
-  const isAuthor = user && recipe.author?.id === user.id;
+  const isAuthor = user && recipe.author?.id === parseInt(user.user_id);
 
   return (
     <div className="recipe-detail-container">
@@ -162,10 +162,10 @@ const RecipeDetail = () => {
         {isAuthor && (
           <div className="author-actions">
             <Link to={`/edit/${recipe.id}`} className="edit-btn">
-              ✏️ Edit
+              Edit
             </Link>
             <button onClick={handleDelete} className="delete-btn">
-              🗑 Delete
+              Delete
             </button>
           </div>
         )}

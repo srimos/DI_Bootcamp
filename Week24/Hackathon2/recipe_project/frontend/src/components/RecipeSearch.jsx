@@ -36,6 +36,8 @@ const RecipeSearch = () => {
 
   return (
     <div className="container">
+      <p>Welcome to Clean Fridge! Do you have leftovers in your fridge that you want to get rid of? Enter your ingredients in the search bar below and find some simple and creative recipes to use up your leftovers!</p>
+
       <h2>Find Recipes by Ingredients</h2>
 
       <div className="search-bar">
@@ -49,9 +51,15 @@ const RecipeSearch = () => {
         <button onClick={handleSearch}>Search</button>
       </div>
 
-      <div className="recipe-list">
-        {recipes.length === 0 && <p>No recipes found. Try another ingredient!</p>}
+      {loading && <p style={{ textAlign: "center", color: "#666" }}>Loading recipes...</p>}
 
+      {!loading && recipes.length === 0 && (
+        <p style={{ textAlign: "center", color: "#666" }}>
+          No recipes found. Try another ingredient!
+        </p>
+      )}
+
+      <div className="recipe-list">
         {recipes.map((recipe) => (
           <div className="recipe-card" key={recipe.id}>
             {recipe.image && (
