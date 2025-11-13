@@ -32,49 +32,53 @@ function Signup() {
   };
 
   return (
-    <div className="auth-container">
-      <h2>Create an Account</h2>
+    <>
+      <p>Create an account to save your favorite recipes and create your own recipes.</p>
+      <div className="auth-container">
+        
+        <h2>Create an Account</h2>
 
-      {error && <p className="error">{error}</p>}
+        {error && <p className="error">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
+        <form onSubmit={handleSubmit}>
+          <label>Username</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
 
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
 
-        <button type="submit">Sign Up</button>
-      </form>
+          <button type="submit">Sign Up</button>
+        </form>
 
-      <p>
-        Already have an account?{" "}
-        <span className="link" onClick={() => navigate("/login")}>
-          Log in
-        </span>
-      </p>
-    </div>
+        <p>
+          Already have an account?{" "}
+          <span className="link" onClick={() => navigate("/login")}>
+            Log in
+          </span>
+        </p>
+      </div>
+    </>
   );
 }
 

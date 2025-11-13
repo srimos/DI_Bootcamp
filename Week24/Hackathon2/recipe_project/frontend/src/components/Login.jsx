@@ -19,38 +19,42 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container"
-    // style={{ maxWidth: "400px", margin: "auto", marginTop: "100px" }}
-    >
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
-        <input
-          type="text"
-          // placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        /><br/>
-        <label>Password</label>
-        <input
-          type="password"
-          // placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        /><br/>
-        <button type="submit">Login</button>
-      </form>
+    <>
+      <p> Log in to save your favorite recipes and create your own recipes.</p>
+      <div className="auth-container"
+      // style={{ maxWidth: "400px", margin: "auto", marginTop: "100px" }}
+      >
+        
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <label>Username</label>
+          <input
+            type="text"
+            // placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          /><br/>
+          <label>Password</label>
+          <input
+            type="password"
+            // placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          /><br/>
+          <button type="submit">Login</button>
+        </form>
 
-      <p>
-        Don't have an account?{" "}
-        <span className="link" onClick={() => navigate("/signup")}>
-          Sign up
-        </span>
-      </p>
+        <p>
+          Don't have an account?{" "}
+          <span className="link" onClick={() => navigate("/signup")}>
+            Sign up
+          </span>
+        </p>
 
-    </div>
+      </div>
+    </>
   );
 
   // const [formData, setFormData] = useState({ username: "", password: "" });
