@@ -96,7 +96,7 @@ function MyRecipes() {
                   </button>
 
                   <button onClick={() => handleDelete(recipe.id)} className="btn-delete">
-                    🗑 Delete
+                    Delete
                   </button>
                 </div>
               </div>
