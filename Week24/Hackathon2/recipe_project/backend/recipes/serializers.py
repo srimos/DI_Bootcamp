@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username']
 
 class RecipeSerializer(serializers.ModelSerializer):
-    ingredients = serializers.SerializerMethodField()
+    ingredients = serializers.CharField(write_only=True)
     ingredient_objects = IngredientSerializer(source='ingredients', many=True, read_only=True)
     image = serializers.ImageField(required=False)
     author = UserSerializer(read_only=True)
@@ -28,30 +28,42 @@ class RecipeSerializer(serializers.ModelSerializer):
         read_only_fields = ['author', 'created_at']
     
     def create(self, validated_data):
-        ingredient_string = validated_data.pop('ingredients', '')
+        ingredients_raw = validated_data.pop('ingredients', "")
         recipe = Recipe.objects.create(**validated_data)
-        self._set_ingredients(recipe, ingredient_string)
+        ingredient_names = self._parse_ingredients(ingredients_raw)
+        self._set_ingredients(recipe, ingredient_names)
         return recipe
     
     def update(self, instance, validated_data):
-        ingredient_string = validated_data.pop('ingredients', None)
+        ingredients_raw = validated_data.pop('ingredients', None)
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
-        if ingredient_string is not None:
-            self._set_ingredients(instance, ingredient_string)
+        if ingredients_raw is not None:
+            ingredient_names = self._parse_ingredients(ingredients_raw)
+            self._set_ingredients(instance, ingredient_names)
         return instance
     
-    def _set_ingredients(self, recipe, ingredient_string):
-        names = [n.strip().lower() for n in ingredient_string.split(',') if n.strip()]
+    def _parse_ingredients(self, ingredients_raw):
+        if isinstance(ingredients_raw, list):
+            return [name.strip().lower() for name in ingredients_raw if name.strip()]
+        elif isinstance(ingredients_raw, str):
+            return [name.strip().lower() for name in ingredients_raw.split(",") if name.strip()]
+        return []
+
+    def _set_ingredients(self, recipe, ingredient_names):
         recipe.ingredients.clear()
-        for name in names:
+        for name in ingredient_names:
             ingredient, _ = Ingredient.objects.get_or_create(name=name)
             recipe.ingredients.add(ingredient)
 
-    def get_ingredients(self, obj):
-        return ", ".join(i.name for i in obj.ingredients.all())
-
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data["ingredients"] = ", ".join(
+            [i.name for i in instance.ingredients.all()]
+        )
+        return data
+    
 class RecipeDetailSerializer(serializers.ModelSerializer):
     ingredients = IngredientSerializer(many=True, read_only=True)
     image = serializers.ImageField(required=False)

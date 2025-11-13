@@ -20,7 +20,7 @@ function CreateRecipe() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("ingredients_text", ingredients);
+    formData.append("ingredients", ingredients);
     formData.append("steps", steps);
     formData.append("notes", notes)
     if (image) formData.append("image", image);
@@ -73,7 +73,9 @@ function CreateRecipe() {
         <textarea
           value={steps}
           onChange={(e) => setSteps(e.target.value)}
-          placeholder="Write step one here.\n Then start the next step in a new line.\n And so on..."
+          placeholder={ `Write step one here.
+Then start the next step in a new line.
+And so on...`}
           required
         />
 

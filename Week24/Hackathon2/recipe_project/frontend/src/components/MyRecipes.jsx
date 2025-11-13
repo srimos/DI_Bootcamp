@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../api";
 import { AuthContext } from "../context/AuthContext";
-import "./MyRecipes.css";
+import "./RecipeSearch.css";
 
 function MyRecipes() {
   const [myRecipes, setMyRecipes] = useState([]);
@@ -47,7 +47,7 @@ function MyRecipes() {
   };
 
   return (
-    <div className="my-recipes-container">
+    <div className="container">
       <h2>My Original Recipes 👨‍🍳</h2>
 
       <button
@@ -70,34 +70,36 @@ function MyRecipes() {
               <div className="recipe-content">
                 <h3>{recipe.title || "Untitled"}</h3>
                 <p>{recipe.description || "No description available."}</p>
+
+                <div className="ingredients">
+                  {recipe.ingredient_objects &&
+                    recipe.ingredient_objects.map((ing) => (
+                      <span className="ingredient-tag" key={ing.id}>
+                        {ing.name}
+                      </span>
+                    ))}
+                </div>
+
+                <div className="button-group">
+                  <button
+                    className="view-recipe-btn"
+                    onClick={() => navigate(`/recipes/${recipe.id}`)}
+                  >
+                    View
+                  </button>
+
+                  <button
+                    className="btn-edit"
+                    onClick={() => navigate(`/recipes/${recipe.id}/edit`)}
+                  >
+                    Edit
+                  </button>
+
+                  <button onClick={() => handleDelete(recipe.id)} className="btn-delete">
+                    🗑 Delete
+                  </button>
+                </div>
               </div>
-
-              <div className="ingredients">
-                {recipe.ingredient &&
-                  recipe.ingredient.map((ing) => (
-                    <span className="ingredient-tag" key={ing.id}>
-                      {ing.name}
-                    </span>
-                  ))}
-              </div>
-
-              <button
-                className="view-recipe-btn"
-                onClick={() => navigate(`/recipes/${recipe.id}`)}
-              >
-                View
-              </button>
-
-              <button
-                className="edit-recipe-btn"
-                onClick={() => navigate(`/recipes/${recipe.id}/edit`)}
-              >
-                Edit
-              </button>
-
-              <button onClick={() => handleDelete(recipe.id)} className="btn-delete">
-                🗑 Delete
-              </button>
             </div>
           ))
         ) : (

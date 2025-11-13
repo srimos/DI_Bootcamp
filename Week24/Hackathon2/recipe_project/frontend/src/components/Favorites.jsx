@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import api from "../api";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import "./Favorites.css";
+import "./RecipeSearch.css";
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -30,7 +30,7 @@ function Favorites() {
   };
 
   return (
-    <div className="favorites-container">
+    <div className="container">
       <h2>My Favorite Recipes ❤️</h2>
       <div className="recipe-list">
         {favorites.map((fav) => (
