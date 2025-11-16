@@ -42,17 +42,14 @@ class RecipeSearchView(generics.ListAPIView):
 
         terms = [term.strip().lower() for term in query.replace(',', ' ').split() if term.strip()]
 
-        filters = Q()
         for term in terms:
-            filters |= (
+            recipes = recipes.filter(
                 Q(title__icontains=term) |
                 Q(description__icontains=term) |
                 Q(ingredients__name__icontains=term)
             )
 
-        recipes = recipes.filter(filters).distinct()
-
-        return recipes
+        return recipes.distinct()
     
 class RecipeDetailView(generics.RetrieveAPIView):
     queryset = Recipe.objects.all()

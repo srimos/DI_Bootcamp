@@ -10,6 +10,6 @@ router.register(r"my-recipes", MyRecipeViewSet, basename="my-recipe")
 
 urlpatterns = [
     path("recipes/search/", RecipeSearchView.as_view(), name="recipe-search"),
-    path('recipes/<int:pk>/', RecipeDetailView.as_view(), name='recipe-detail'), 
+    # path('recipes/<int:pk>/detail/', RecipeDetailView.as_view(), name='recipe-detail'), 
     path("", include(router.urls)),
 ]

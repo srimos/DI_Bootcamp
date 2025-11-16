@@ -12,25 +12,25 @@ const RecipeDetail = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
 
-  const handleFavorite = async () => {
-    try {
-      await api.post(
-        "favorites/",
-        { recipe: recipe.id },
-        { headers: { Authorization: `Bearer ${authTokens.access}` } }
-      );
-      alert("Recipe added to favorites!");
-    } catch (err) {
-      console.error(err);
-      alert("Error adding to favorites");
-    }
-  };
+  // const handleFavorite = async () => {
+  //   try {
+  //     await api.post(
+  //       "favorites/",
+  //       { recipe: recipe.id },
+  //       { headers: { Authorization: `Bearer ${authTokens.access}` } }
+  //     );
+  //     alert("Recipe added to favorites!");
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Error adding to favorites");
+  //   }
+  // };
 
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this recipe?")) return;
 
     try {
-      await api.delete(`/my-recipes/${id}/`, {
+      await api.delete(`/recipes/${id}/`, {
         headers: { Authorization: `Bearer ${authTokens.access}` },
       });
       alert("Recipe deleted successfully!");
@@ -119,8 +119,8 @@ const RecipeDetail = () => {
       <section className="recipe-section">
         <h3>Ingredients</h3>
         <ul className="ingredients-list">
-          {recipe.ingredients?.length > 0 ? (
-            recipe.ingredients.map((i) => (
+          {recipe.ingredient_objects?.length > 0 ? (
+            recipe.ingredient_objects.map((i) => (
               <li key={i.id}>{i.name}</li>
             ))
           ) : (
@@ -159,16 +159,16 @@ const RecipeDetail = () => {
           ← Back to {isAuthor ? "My Recipes" : "Recipes"}
         </Link>
 
-        {isAuthor && (
+        {/* {isAuthor && (
           <div className="author-actions">
-            <Link to={`/edit/${recipe.id}`} className="edit-btn">
+            <Link to={`/recipes/${recipe.id}/edit`} className="edit-btn">
               Edit
             </Link>
             <button onClick={handleDelete} className="delete-btn">
               Delete
             </button>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

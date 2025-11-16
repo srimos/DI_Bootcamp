@@ -27,9 +27,10 @@ function EditRecipe() {
         setTitle(data.title);
         setDescription(data.description);
         setIngredients(
-          data.ingredients?.map(i => i.name).join(", ") || ""
+          data.ingredient_objects?.map(i => i.name).join(", ") || ""
         );
         setSteps(data.steps || "");
+        setNotes(data.notes);
       } catch (error) {
         console.error("Error fetching recipe:", error);
         alert("Failed to load recipe details.");
@@ -68,11 +69,11 @@ function EditRecipe() {
     if (!window.confirm("Are you sure you want to delete this recipe?")) return;
 
     try {
-      await api.delete(`recipes/${id}/`, {
+      await api.delete(`/recipes/${id}/`, {
         headers: { Authorization: `Bearer ${authTokens.access}` },
       });
-      setRecipe((prev) => prev.filter((r) => r.id !== id));
       alert("Recipe deleted successfully!");
+      navigate("/my-recipes"); 
     } catch (error) {
       console.error("Delete failed:", error);
       alert("Failed to delete recipe.");
