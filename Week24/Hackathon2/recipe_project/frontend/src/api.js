@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = 
 // import.meta.env?.VITE_API_URL || 
-"https://cleanfridge.onrender.com";
+"http://127.0.0.1:8000";
 if (!BASE_URL) console.error("VITE_API_URL is undefined!");
 
 const api = axios.create({
