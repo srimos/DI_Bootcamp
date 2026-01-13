@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -34,3 +35,14 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+def test_env(request):
+    return JsonResponse({
+        "DATABASE_NAME": os.environ.get("DATABASE_NAME"),
+        "DATABASE_HOST": os.environ.get("DATABASE_HOST"),
+        "DATABASE_USER": os.environ.get("DATABASE_USER"),
+    })
+
+urlpatterns += [
+    path("test-env/", test_env),
+]

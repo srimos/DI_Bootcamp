@@ -21,8 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-hg_^rng*57lph5go-q4y2xy^l7=53tg+1@n&q_6w=t_)7e6_t9'
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 'django-insecure-hg_^rng*57lph5go-q4y2xy^l7=53tg+1@n&q_6w=t_)7e6_t9'
+# SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
@@ -100,12 +100,13 @@ WSGI_APPLICATION = 'recipe_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        "NAME": os.environ.get("DATABASE_NAME"),
-        "USER": os.environ.get("DATABASE_USER"),
-        "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
-        "HOST": os.environ.get("DATABASE_HOST"),
-        "PORT": os.environ.get("DATABASE_PORT"),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ["DATABASE_NAME"],
+        "USER": os.environ["DATABASE_USER"],
+        "PASSWORD": os.environ["DATABASE_PASSWORD"],
+        "HOST": os.environ["DATABASE_HOST"],
+        "PORT": os.environ.get("DATABASE_PORT", 5432),
+        "OPTIONS": {"sslmode": "require"},
         # 'NAME': 'recipes',
         # 'USER': 'neondb_owner',
         # 'PASSWORD': 'npg_Jbx8Aq6cIBLu',
@@ -113,6 +114,9 @@ DATABASES = {
         # 'PORT': '5432'
     }
 }
+print("DATABASE_NAME:", os.environ.get("DATABASE_NAME"))
+print("DATABASE_HOST:", os.environ.get("DATABASE_HOST"))
+print("DATABASE_USER:", os.environ.get("DATABASE_USER"))
 
 
 # Password validation
