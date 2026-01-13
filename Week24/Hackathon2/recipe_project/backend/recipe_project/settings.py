@@ -98,7 +98,7 @@ WSGI_APPLICATION = 'recipe_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# if os.environ.get("RENDER"):  
+if os.environ.get("RENDER"):  
     # ✅ Production (Render + Neon)
     DATABASES = {
         "default": {
@@ -118,14 +118,14 @@ WSGI_APPLICATION = 'recipe_project.wsgi.application'
             },
         }
     }
-# else:
-#     # ✅ Local development
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.sqlite3",
-#             "NAME": BASE_DIR / "db.sqlite3",
-#         }
-#     }
+else:
+    # ✅ Local development
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
