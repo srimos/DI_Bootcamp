@@ -87,3 +87,13 @@ class MyRecipeViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+from django.http import JsonResponse
+from django.db import connection
+
+def db_debug(request):
+    return JsonResponse({
+        "db_name": connection.settings_dict.get("NAME"),
+        "db_host": connection.settings_dict.get("HOST"),
+        "db_user": connection.settings_dict.get("USER"),
+    })
