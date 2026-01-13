@@ -36,14 +36,14 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-def test_env(request):
-    return JsonResponse({
-        "DATABASE_NAME": os.environ.get("DATABASE_NAME", "❌ NOT SET"),
-        "DATABASE_HOST": os.environ.get("DATABASE_HOST", "❌ NOT SET"),
-        "DATABASE_USER": os.environ.get("DATABASE_USER", "❌ NOT SET"),
-        "DATABASE_PORT": os.environ.get("DATABASE_PORT", "❌ NOT SET"),
-    })
+# def test_env(request):
+#     return JsonResponse({
+#         "DATABASE_NAME": os.environ.get("DATABASE_NAME", "❌ NOT SET"),
+#         "DATABASE_HOST": os.environ.get("DATABASE_HOST", "❌ NOT SET"),
+#         "DATABASE_USER": os.environ.get("DATABASE_USER", "❌ NOT SET"),
+#         "DATABASE_PORT": os.environ.get("DATABASE_PORT", "❌ NOT SET"),
+#     })
 
-urlpatterns += [
-    path("test-env/", test_env),
-]
+# urlpatterns += [
+#     path("test-env/", test_env),
+# ]

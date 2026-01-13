@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 class RecipeSerializer(serializers.ModelSerializer):
     ingredients = serializers.CharField(write_only=True)
     ingredient_objects = IngredientSerializer(source='ingredients', many=True, read_only=True)
-    image = serializers.ImageField(required=False)
+    image = serializers.ImageField(required=False, use_url=True)
     author = UserSerializer(read_only=True)
 
     class Meta:
