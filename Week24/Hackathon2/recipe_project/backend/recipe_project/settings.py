@@ -98,28 +98,34 @@ WSGI_APPLICATION = 'recipe_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ["DATABASE_NAME"],
-        "USER": os.environ["DATABASE_USER"],
-        "PASSWORD": os.environ["DATABASE_PASSWORD"],
-        "HOST": os.environ["DATABASE_HOST"],
-        "PORT": "5432",
-        "OPTIONS": {
-            "sslmode": "require",
-        },
-        # 'NAME': 'recipes',
-        # 'USER': 'neondb_owner',
-        # 'PASSWORD': 'npg_Jbx8Aq6cIBLu',
-        # 'HOST': 'ep-quiet-shape-a1amc42u-pooler.ap-southeast-1.aws.neon.tech',
-        # 'PORT': '5432'
+if os.environ.get("RENDER"):  
+    # ✅ Production (Render + Neon)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ["DATABASE_NAME"],
+            "USER": os.environ["DATABASE_USER"],
+            "PASSWORD": os.environ["DATABASE_PASSWORD"],
+            "HOST": os.environ["DATABASE_HOST"],
+            "PORT": "5432",
+            "OPTIONS": {
+                "sslmode": "require",
+            # 'NAME': 'recipes',
+            # 'USER': 'neondb_owner',
+            # 'PASSWORD': 'npg_Jbx8Aq6cIBLu',
+            # 'HOST': 'ep-quiet-shape-a1amc42u-pooler.ap-southeast-1.aws.neon.tech',
+            # 'PORT': '5432'
+            },
+        }
     }
-}
-print("DATABASE_NAME:", os.environ.get("DATABASE_NAME"))
-print("DATABASE_HOST:", os.environ.get("DATABASE_HOST"))
-print("DATABASE_USER:", os.environ.get("DATABASE_USER"))
-
+else:
+    # ✅ Local development
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
