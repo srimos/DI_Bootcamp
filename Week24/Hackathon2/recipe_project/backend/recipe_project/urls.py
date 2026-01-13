@@ -38,9 +38,10 @@ if settings.DEBUG:
 
 def test_env(request):
     return JsonResponse({
-        "DATABASE_NAME": os.environ.get("DATABASE_NAME"),
-        "DATABASE_HOST": os.environ.get("DATABASE_HOST"),
-        "DATABASE_USER": os.environ.get("DATABASE_USER"),
+        "DATABASE_NAME": os.environ.get("DATABASE_NAME", "❌ NOT SET"),
+        "DATABASE_HOST": os.environ.get("DATABASE_HOST", "❌ NOT SET"),
+        "DATABASE_USER": os.environ.get("DATABASE_USER", "❌ NOT SET"),
+        "DATABASE_PORT": os.environ.get("DATABASE_PORT", "❌ NOT SET"),
     })
 
 urlpatterns += [
