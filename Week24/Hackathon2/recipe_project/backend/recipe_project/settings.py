@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-hg_^rng*57lph5go-q4y2xy^l7=53tg+1@n&q_6w=t_)7e6_t9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["cleanfridge.onrender.com"]
 
 # Application definition
 
@@ -163,6 +163,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
