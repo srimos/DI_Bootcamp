@@ -10,8 +10,14 @@ import PrivateRoute from "./components/PrivateRoute";
 import Navbar from "./components/Navbar";
 import CreateRecipe from "./components/CreateRecipe";
 import EditRecipe from "./components/EditRecipe";
+import { useEffect } from "react";
 
 function App() {
+
+  useEffect(() => {
+    console.log("VITE_API_URL =", import.meta.env.VITE_API_URL);
+  }, []);
+  
   return (
     <AuthProvider>
       <Router>
