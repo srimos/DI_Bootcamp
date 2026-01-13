@@ -121,7 +121,6 @@ if os.environ.get("RENDER"):
             # 'PORT': '5432'
             },
         }
-    }
 else:
     # ✅ Local development
     DATABASES = {
