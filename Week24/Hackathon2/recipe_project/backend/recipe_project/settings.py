@@ -21,8 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hg_^rng*57lph5go-q4y2xy^l7=53tg+1@n&q_6w=t_)7e6_t9'
-# SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "django-insecure-hg_^rng*57lph5go-q4y2xy^l7=53tg+1@n&q_6w=t_)7e6_t9"  # fallback for local
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
@@ -46,9 +48,12 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.AllowAny",  # allow public read for recipes
+    ),
 }
 
 MIDDLEWARE = [
@@ -107,9 +112,8 @@ if os.environ.get("RENDER"):
             "USER": os.environ["DATABASE_USER"],
             "PASSWORD": os.environ["DATABASE_PASSWORD"],
             "HOST": os.environ["DATABASE_HOST"],
-            "PORT": "5432",
-            "OPTIONS": {
-                "sslmode": "require",
+            "PORT": os.environ.get("DATABASE_PORT", "5432"),
+            "OPTIONS": {"sslmode": "require"},
             # 'NAME': 'recipes',
             # 'USER': 'neondb_owner',
             # 'PASSWORD': 'npg_Jbx8Aq6cIBLu',
